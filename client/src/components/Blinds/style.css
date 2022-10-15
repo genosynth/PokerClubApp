@@ -1,0 +1,18 @@
+.setblinds {
+   width: 50%;
+   padding: 5%;
+   display: flex;
+   flex-wrap: wrap;
+   
+}
+
+.seats {
+   display: flex;
+   flex-direction: column;
+}
+
+.blinds {
+    display: flex;
+    flex-direction: column;
+
+}
