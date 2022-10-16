@@ -1,0 +1,9 @@
+.template {
+    
+    display: flex;   
+    text-align: center;
+}
+
+.template div{
+    flex-grow: 1;
+}

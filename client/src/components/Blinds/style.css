@@ -1,18 +1,29 @@
 .setblinds {
-   width: 50%;
-   padding: 5%;
+   
+   padding: 2%;
    display: flex;
    flex-wrap: wrap;
+   border: black solid 5px;
+   border-radius: 10px;
    
 }
 
 .seats {
    display: flex;
    flex-direction: column;
+ 
+   padding: 2%;
+   font-weight: bold;
+   
+   
 }
 
 .blinds {
     display: flex;
     flex-direction: column;
 
+   padding: 2%;
+   font-weight: bold;
+
+  
 }
