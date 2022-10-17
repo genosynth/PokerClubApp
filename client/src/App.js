@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useState, useEffect} from "react"
 import SetBlindLevels from './components/Blinds/SetBlindLevels'
 import TimerClock from './components/Timer/TimerClock'
+import Alarm from './components/Audio/soundLogic'
 
 function App() {
 
@@ -73,6 +74,8 @@ if (game!=null){
         <h5>Ante - {game[provisionLevel].ante}</h5>
       
       </div>
+
+      <Alarm></Alarm>
       
     </div>
   );
