@@ -2,10 +2,41 @@
     
     display: flex;   
     text-align: center;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.644);
+    align-content: center;
+    
+    
+    
 }
 
 .template div{
     flex-grow: 1;
-    border: solid black 2px;
-    border-radius: 3px;
+   
+}
+
+h1 {
+    font-size: 100px;
+}
+
+.template div h1 {
+    font-size: 150px;
+}
+
+.template div h2 {
+    font-size: 80px ;
+}
+
+.template div h4, h5 {
+    font-size: 40px;
+}
+
+
+
+.template div h6, h3 {
+    font-size: 40px;
+}
+
+body {
+    background-color: black;
 }

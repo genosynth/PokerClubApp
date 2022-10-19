@@ -1,28 +1,37 @@
-import './App.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, {useState, useEffect} from "react"
+import './App.css';
+import React, {useState} from "react"
 import SetBlindLevels from './components/Blinds/SetBlindLevels'
 import TimerClock from './components/Timer/TimerClock'
-import Alarm from './components/Audio/soundLogic'
+import alarm from './components/Audio/alarmshort.mp3'
+import Players from './components/Players/Players';
+
 
 function App() {
 
   const [game, setGame] = useState(null)
+  const [audio] = useState(new Audio(alarm));
+  const [flash, updateFlash] = useState({
+    backgroundColor: "black"
+  })
 
-  const [timer, setTimer] = useState("")
  
   function createGame(players,blinds){
     let temp = {...players,...blinds}
     setGame(temp)
+   
 
   }
+
+  
 
   const [currentLevel, setCurrentLevel] = useState("level1")
   const [provisionLevel, setProvisionLevel] = useState("level2")
 
   function nextBlinds(){
- 
-
+      audio.play()
+      //flashing()
       let temp = currentLevel
       temp = temp.split("")[temp.length-1]
       console.log(temp)
@@ -38,21 +47,20 @@ function App() {
     
 if (game!=null){
 
+ 
+
 
   return (
-    <div className='template'>
+
+    
+    <div className='template' style={flash}>
 
       <div>
-        <h2>{game[1]}</h2>
-        <h2>{game[2]}</h2>
-        <h2>{game[3]}</h2>
-        <h2>{game[4]}</h2>
-        <h2>{game[5]}</h2>
-        <h2>{game[6]}</h2>
-        <h2>{game[7]}</h2>
-        <h2>{game[8]}</h2>
-        <h2>{game[9]}</h2>
-        <h2>{game[10]}</h2>
+        
+        <h5>PLAYERS</h5>
+        <Players game={game}></Players>
+   
+    
       </div>
    
       
@@ -60,22 +68,22 @@ if (game!=null){
         
 
         <h1> {currentLevel}</h1>
-        <h2>Small Blind - {game[currentLevel].sb}</h2>
-        <h2>Big Blind - {game[currentLevel].bb}</h2>
+        <h2>SB - {game[currentLevel].sb}</h2>
+        <h2>BB - {game[currentLevel].bb}</h2>
         <h3>Ante - {game[currentLevel].ante}</h3>
         <TimerClock seconds={game.time*60} nextBlinds={nextBlinds}></TimerClock>
         <span>Blind Durations - {game.time} minutes </span>
       </div>
 
       <div>
-        <h4>Next Level - {provisionLevel}</h4>
-        <h5>Small Blind - {game[provisionLevel].sb} </h5>   
-        <h5>Big Blind - {game[provisionLevel].bb}</h5>  
+        <h4>Next Level</h4>
+        <h5>SB - {game[provisionLevel].sb} </h5>   
+        <h5>BB - {game[provisionLevel].bb}</h5>  
         <h5>Ante - {game[provisionLevel].ante}</h5>
       
       </div>
 
-      <Alarm></Alarm>
+    
       
     </div>
   );

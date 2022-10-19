@@ -1,18 +1,21 @@
 import React, {useState,useEffect} from 'react'
-import './style.css'
+import './styleTimer.css'
 import Button from 'react-bootstrap/Button';
 
 const TimerClock = ({ seconds,nextBlinds }) => {
     // initialize timeLeft with the seconds prop
 
 
-    const [timeLeftMins, setTimeLeftMins] = useState(Math.floor(seconds/60));
     const [timeLeftSec, setTimeLeftSec] = useState(seconds);
     const [pause, setPause] = useState(true);
+    const [style, setStyle] = useState({
+    color:"rgba(255, 255, 255, 0.644)"
+    })
 
     const handlePauseButton = () => {
 
       if (!pause){
+        setStyle({color:"gold"})
         return setPause(true)
       }
 
@@ -20,18 +23,33 @@ const TimerClock = ({ seconds,nextBlinds }) => {
 
     const handleStartButton = () => {
 
-      if (pause){        
+      if (pause){ 
+
+        setStyle({color:"rgba(255, 255, 255, 0.644)"})
         return setPause(false)
       }
 
     }
 
+    const handleRestartButton = () => {
+      if (window.confirm("Are you sure you want to restart this level?")){
+        setTimeLeftSec(seconds)
+        setPause(true)
+      }
+      
+    }
+
+    useEffect(()=>{
+      if (timeLeftSec<10){
+        setStyle({color:"red"})
+      }
+    },[timeLeftSec])
 
   
     useEffect(() => {
       // exit early when we reach 0 or in this case restart same duration for next blind
       if (!timeLeftSec){       
-        window.alert("Click to start next round!")
+        //window.alert("Click to start next round!")
         setTimeLeftSec(seconds)
         setPause(true)
       return nextBlinds()  
@@ -56,14 +74,27 @@ const TimerClock = ({ seconds,nextBlinds }) => {
     }, [timeLeftSec,pause]);
 
 
+    const zeroSeconds = () =>{
+   
+
+        if(timeLeftSec-(60*(Math.floor(timeLeftSec/60)))<10){
+        return `0${timeLeftSec}`
+      }
+
+      else {
+        return timeLeftSec-(60*(Math.floor(timeLeftSec/60)))
+      }
+    }
   
 
-    if (seconds>60){
+    if (seconds>59){
         return (
             <div>
-              <h1>{Math.floor(timeLeftSec/60)} : {timeLeftSec-(60*(Math.floor(timeLeftSec/60)))}</h1>
-             <Button  variant="outline-danger" onClick={handlePauseButton}>Pause</Button>
-             <Button variant="outline-success" onClick={handleStartButton}>Start</Button>
+              <h1 style={style}>{Math.floor(timeLeftSec/60)} : {timeLeftSec-(60*(Math.floor(timeLeftSec/60)))}</h1>
+              <Button variant="outline-danger" onClick={handleRestartButton} >Restart</Button>
+              <Button  variant="outline-warning" onClick={handlePauseButton}>Pause</Button>
+              <Button variant="outline-success" onClick={handleStartButton}>Start</Button>
+           
             </div>
           );
 
@@ -71,9 +102,11 @@ const TimerClock = ({ seconds,nextBlinds }) => {
 
     return (
       <div>
-        <h1>{Math.floor(timeLeftSec/60)} : {timeLeftSec} </h1>
-        <Button  variant="outline-danger" onClick={handlePauseButton}>Pause</Button>
+        <h1 style={style}>{Math.floor(timeLeftSec/60)} : {timeLeftSec-(60*(Math.floor(timeLeftSec/60)))} </h1>
+        <Button variant="outline-danger" handleRestartButton>Restart</Button>
+        <Button  variant="outline-warning" onClick={handlePauseButton}>Pause</Button>
         <Button variant="outline-success" onClick={handleStartButton}>Start</Button>
+       
         
       </div>
     );

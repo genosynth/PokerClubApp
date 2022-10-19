@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import './style.css'
+import './styleBlinds.css'
 import Button from 'react-bootstrap/Button';
 
 function BlindLevels({createGame}) {
@@ -240,7 +240,7 @@ function handleTimeofBlinds(){
         </label>
 
         <label>Blind Levels (minutes)</label>
-      <input type="number" ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
+      <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
         
       </div>
       
