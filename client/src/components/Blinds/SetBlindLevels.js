@@ -43,6 +43,8 @@ function BlindLevels({createGame}) {
 
   })
 
+
+
   const blindTime = useRef();
   const sb1 = useRef();
   const bb1 = useRef();
@@ -104,7 +106,7 @@ function BlindLevels({createGame}) {
   const ante18 = useRef();
   const ante19 = useRef();
   const ante20 = useRef();
-
+  const startingStacks = useRef()
 
 
 
@@ -180,67 +182,85 @@ function handleTimeofBlinds(){
     setPlayerObject(temp)
   }
 
+  
   const handlePlayer10 = (event) => { 
     let temp = players
     temp[10]=event.target.value   
     setPlayerObject(temp)
   }
 
+
+  const [stacks, updateStacks] = useState("")
+  
+  const handleStartingStacks = (event) =>{
+   
+   let stacks = event.target.value
+    updateStacks(stacks)
+    
+  }
+
   const [style, setStyle] = useState("visible")
+
+
 
 
   return (
     <form className='setblinds'style={{visibility:style}} onSubmit={(event)=>{
       event.preventDefault()
       if(window.confirm("Confirm?")){
-        createGame(players,blinds)
+       
+        createGame(players,blinds,stacks)
         setStyle("hidden")}     
       }      
 
       }>
       <div className='seats'>
-        <label>Seat 1
-           <input type="text" onChange={handlePlayer1} ></input>
+        <label>Player 1
+           <input type="text" onChange={handlePlayer1}></input>
         </label>
        
-        <label>Seat 2
+        <label>Player 2
           <input type="text" onChange={handlePlayer2}></input>
         </label>
         
-        <label>Seat 3
+        <label>Player 3
           <input type="text" onChange={handlePlayer3}></input>
         </label>
         
-        <label>Seat 4
+        <label>Player 4
           <input type="text" onChange={handlePlayer4}></input>
         </label>
         
-        <label>Seat 5
+        <label>Player 5
             <input type="text" onChange={handlePlayer5}></input>
         </label>
         
-        <label>Seat 6
+        <label>Player 6
           <input type="text" onChange={handlePlayer6}></input>
         </label>
        
-        <label>Seat 7
+        <label>Player 7
             <input type="text" onChange={handlePlayer7}></input>
         </label>
        
-        <label>Seat 8
+        <label>Player 8
           <input type="text" onChange={handlePlayer8}></input>
         </label>
         
-        <label>Seat 9
+        <label>Player 9
            <input type="text" onChange={handlePlayer9}></input>
         </label>
        
-        <label>Seat 10
+        <label>Player 10
           <input type="text" onChange={handlePlayer10}></input>
         </label>
+        
 
         <label>Blind Levels (minutes)</label>
       <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
+
+      <label>Starting Stacks</label>
+      <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
         
       </div>
       
@@ -376,7 +396,6 @@ function handleTimeofBlinds(){
       </label>
     
         </div>
-
 
       <Button type='submit' variant="outline-dark">Create</Button>
     </form>

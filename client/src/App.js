@@ -7,12 +7,13 @@ import TimerClock from './components/Timer/TimerClock'
 import alarm from './components/Audio/alarmshort.mp3'
 import Players from './components/Players/Players';
 import ListKnocked from './components/Players/ListKnocked'
+import Button from 'react-bootstrap/Button';
 
 
 function App() {
 
   const [game, setGame] = useState(null)
-  const [audio] = useState(new Audio(alarm));
+  const [audio] = useState(new Audio(alarm)); 
   const [flash, updateFlash] = useState({
     backgroundColor: "black"
   })
@@ -25,8 +26,8 @@ function App() {
   }
 
  
-  function createGame(players,blinds){
-    let temp = {...players,...blinds}
+  function createGame(players,blinds,stacks){
+    let temp = {...players,...blinds,stacks}
     setGame(temp)
    
 
@@ -52,6 +53,7 @@ function App() {
   }
 
 
+
     
 if (game!=null){
 
@@ -61,12 +63,13 @@ if (game!=null){
   return (
 
     
-    <div className='template' style={flash}>
+    <div className='template' >
 
       <div>
         
         <h5>PLAYERS</h5>
         <Players game={game} addToKnockedOut={addToKnockedOut} setNumOfPlayers={setNumOfPlayers}></Players>
+         <h5 style={{color:"green"}}> Avg Stack - {Math.floor((game.stacks*numOfPlayers)/(numOfPlayers-knockedOutPlayers.length))}K</h5>
         <h5 style={{color:"red"}}>Knocked Out</h5>
         <ListKnocked knockedOutPlayers={knockedOutPlayers}></ListKnocked>
     
@@ -82,6 +85,7 @@ if (game!=null){
         <h3>Ante - {game[currentLevel].ante}</h3>
         <TimerClock seconds={game.time*60} nextBlinds={nextBlinds}></TimerClock>
         <span>Blind Durations - {game.time} minutes </span>
+        <Button variant="outline-dark" >Back</Button>
       </div>
 
       <div>
@@ -101,7 +105,8 @@ if (game!=null){
 
   return (
     <div >
-      <SetBlindLevels createGame={createGame}></SetBlindLevels>
+      
+      <SetBlindLevels createGame={createGame} ></SetBlindLevels>
      
     </div>
   );

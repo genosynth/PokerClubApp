@@ -14,7 +14,33 @@ const [players,setPlayers]=useState([])
             }
         }
 
-        setPlayers(temp)
+        function shuffle(array) { //to shuffle players and give seats
+            let currentIndex = array.length,  randomIndex;
+          
+            // While there remain elements to shuffle.
+            while (currentIndex != 0) {
+          
+              // Pick a remaining element.
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex--;
+          
+              // And swap it with the current element.
+              [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+            }
+          
+            return array;
+          }
+        
+        temp = shuffle(temp)
+        let temp2 = []
+        for (let i=0; i<=temp.length; i++){
+            if (temp[i]!=null){
+                temp2.push(`Seat ${i+1} - ${temp[i]}`)
+            }
+            
+        }
+        setPlayers(temp2)
         setNumOfPlayers(temp.length)
     }
     

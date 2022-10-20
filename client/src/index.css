@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background-image: url(./wallpapers/two.jpg);
+ 
 
 }
 
@@ -18,12 +19,8 @@ code {
 
 h1 {
   text-align: center;
-  background-color: black;
+ 
   color: rgba(255, 255, 255, 0.644);
 
-}
-
-html {
-  background-color: black;
 }
 
