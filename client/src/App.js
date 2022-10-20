@@ -6,6 +6,7 @@ import SetBlindLevels from './components/Blinds/SetBlindLevels'
 import TimerClock from './components/Timer/TimerClock'
 import alarm from './components/Audio/alarmshort.mp3'
 import Players from './components/Players/Players';
+import ListKnocked from './components/Players/ListKnocked'
 
 
 function App() {
@@ -15,6 +16,13 @@ function App() {
   const [flash, updateFlash] = useState({
     backgroundColor: "black"
   })
+  const [knockedOutPlayers, setKnockedOutPlayers] = useState([])
+  const [numOfPlayers, setNumOfPlayers] = useState(0) //this is used to get the total players in the Player Component and then display the placing of the players accordingly.
+
+  function addToKnockedOut(name){
+    name = `${numOfPlayers-knockedOutPlayers.length} - ${name}`
+    setKnockedOutPlayers([name,...knockedOutPlayers])
+  }
 
  
   function createGame(players,blinds){
@@ -58,8 +66,9 @@ if (game!=null){
       <div>
         
         <h5>PLAYERS</h5>
-        <Players game={game}></Players>
-   
+        <Players game={game} addToKnockedOut={addToKnockedOut} setNumOfPlayers={setNumOfPlayers}></Players>
+        <h5 style={{color:"red"}}>Knocked Out</h5>
+        <ListKnocked knockedOutPlayers={knockedOutPlayers}></ListKnocked>
     
       </div>
    

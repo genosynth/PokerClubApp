@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import Player from './Player'
 
-function Players({game}) {
+function Players({game, addToKnockedOut,setNumOfPlayers}) {
 const [players,setPlayers]=useState([])
-const [knockedOutPlayers, setKnockedOutPlayers] = useState([])
+
 
     function assignPlayers(){
         let temp = []
@@ -15,6 +15,7 @@ const [knockedOutPlayers, setKnockedOutPlayers] = useState([])
         }
 
         setPlayers(temp)
+        setNumOfPlayers(temp.length)
     }
     
     useEffect(()=>{
@@ -23,19 +24,23 @@ const [knockedOutPlayers, setKnockedOutPlayers] = useState([])
     },[game])
     
  const knockOut = (event) =>{
-    console.log(event.target.innerText)
-    let name = event.target.innerText
-    setKnockedOutPlayers(...knockedOutPlayers,name)
-
-const temp = players.filter(player => player !== name );
-    setPlayers(temp)
-
+    if(window.confirm(`Knock Out ${event.target.innerText} ?`)){
+        console.log(event.target.innerText)
+        let name = event.target.innerText
+        addToKnockedOut(event.target.innerText)
+      
+    
+    const temp = players.filter(player => player !== name );
+        setPlayers(temp)
+    
+    }
+   
  }
 
   return (
       players.map(player => {
 
-            return <Player key={player} player={player} knockOut={knockOut} knockedOutPlayers = {knockedOutPlayers}></Player>   
+            return <Player key={player} player={player} knockOut={knockOut} ></Player>   
                              
 
         })   
