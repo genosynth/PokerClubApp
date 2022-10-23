@@ -21,8 +21,12 @@
 .blinds {
    display: flex;
    flex-direction: column;
-   padding: 2%;
+   padding: 1%;
    font-weight: bold;
 
   
+}
+
+.blinds label {
+   padding: 5px;
 }

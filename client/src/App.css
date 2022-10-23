@@ -4,19 +4,34 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0.712);
     color: rgba(255, 255, 255, 0.644);
-    align-content: center;
     
+
+  
     
     
 }
 
+body {
+    font-family: 'Permanent Marker', cursive;
+font-family: 'Raleway', sans-serif;
+    
+    
+}
 .template div{
     flex-grow: 1;
+    
+   
+   
+}
+
+.timerDiv {
+    width: 500px;
    
 }
 
 h1 {
     font-size: 100px;
+     
 }
 
 .template div h1 {

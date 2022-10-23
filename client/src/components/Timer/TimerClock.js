@@ -24,6 +24,7 @@ const TimerClock = ({ seconds,nextBlinds }) => {
     const handleStartButton = () => {
 
       if (pause){ 
+    
 
         setStyle({color:"rgba(255, 255, 255, 0.644)"})
         return setPause(false)
