@@ -110,6 +110,7 @@ function BlindLevels({createGame}) {
   const ante19 = useRef();
   const ante20 = useRef();
   const startingStacks = useRef()
+  const prizepool = useRef()
 
 
 
@@ -204,7 +205,19 @@ function handleTimeofBlinds(){
 
   const [style, setStyle] = useState("visible")
 
+ const [total, setTotal] = useState()
+ const [percentages, setPercentages] = useState(null)
 
+ const handlePercentages= (event) => {
+ 
+   let payout = event.target.value 
+ setPercentages(payout)
+ }
+
+ const handleTotal = (event) => {
+  let pool = event.target.value
+  setTotal(pool)
+ }
 
 
   return (
@@ -212,7 +225,7 @@ function handleTimeofBlinds(){
       event.preventDefault()
       if(window.confirm("Confirm?")){
        
-        createGame(players,blinds,stacks)
+        createGame(players,blinds,stacks,total,percentages)
         setStyle("hidden")}     
       }      
 
@@ -265,6 +278,18 @@ function handleTimeofBlinds(){
       <label>Starting Stacks</label>
       <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
         
+       <label>Prize Pool €</label>
+       <input type="number" min ="10" onChange={handleTotal}></input>
+      <label>Prize Winnings</label>
+          <select name="prizepool" onClick={handlePercentages}>
+          <option value="100">1 Player Paid - 100%</option>
+          <option value="70,30">2 Players Paid - 70% 30%</option>
+          <option value="60,40">2 Players Paid - 60% 40%</option>    
+          <option value="50,30,20">3 Players Paid - 50% 30% 20% </option>    
+          <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>            
+        
+       </select>
+      <input type="submit" value="Submit" />
       </div>
       
       <div className='blinds'>        
@@ -332,10 +357,7 @@ function handleTimeofBlinds(){
       </label>
     
       <Button type='submit' variant="outline-dark">Create</Button>
-      <Button tyype="button" variant="outline-primary" onClick={()=>{
-        window.location.reload()
-      }}>Continue</Button>
-
+   
 
       </div>
 

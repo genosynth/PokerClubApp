@@ -19,7 +19,10 @@ font-family: 'Raleway', sans-serif;
 }
 .template div{
     flex-grow: 1;
-    
+    border: solid 2px white;
+    border-radius: 2px;
+    background-color: blue;
+   
    
    
 }
