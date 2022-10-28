@@ -2,8 +2,8 @@
     
     display: flex;   
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.712);
-    color: rgba(255, 255, 255, 0.644);
+    background-color: blue;
+    color: yellow;
     
 
   
@@ -19,9 +19,9 @@ font-family: 'Raleway', sans-serif;
 }
 .template div{
     flex-grow: 1;
-    border: solid 2px white;
+    border: solid 2px yellow;
     border-radius: 2px;
-    background-color: blue;
+  
    
    
    
@@ -29,6 +29,7 @@ font-family: 'Raleway', sans-serif;
 
 .timerDiv {
     width: 500px;
+    color:white;
    
 }
 
@@ -53,5 +54,35 @@ h1 {
 
 .template div h6, h3 {
     font-size: 40px;
+    
+}
+
+.righthandside {
+ color: yellow;
+
+}
+
+.status {
+   margin-top: 15%;
+   margin-bottom: 15%;
+   
+}
+
+.status h3 {
+    font-size: 60px;
+}
+
+.centreDiv {
+    display: flex;
+    flex-direction: row;
+  justify-content: center;
+  
+  
+}
+
+.centreDiv div {
+    border: 2px white solid;
+
+    text-align: left;
 }
 

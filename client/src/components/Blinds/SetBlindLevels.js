@@ -206,7 +206,7 @@ function handleTimeofBlinds(){
   const [style, setStyle] = useState("visible")
 
  const [total, setTotal] = useState()
- const [percentages, setPercentages] = useState(null)
+ const [percentages, setPercentages] = useState("100")
 
  const handlePercentages= (event) => {
  
@@ -281,15 +281,15 @@ function handleTimeofBlinds(){
        <label>Prize Pool €</label>
        <input type="number" min ="10" onChange={handleTotal}></input>
       <label>Prize Winnings</label>
-          <select name="prizepool" onClick={handlePercentages}>
-          <option value="100">1 Player Paid - 100%</option>
+          <select value={percentages} name="prizepool" onChange={handlePercentages}>
+          <option  value="100" >1 Player Paid - 100%</option>
           <option value="70,30">2 Players Paid - 70% 30%</option>
           <option value="60,40">2 Players Paid - 60% 40%</option>    
           <option value="50,30,20">3 Players Paid - 50% 30% 20% </option>    
           <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>            
         
        </select>
-      <input type="submit" value="Submit" />
+     
       </div>
       
       <div className='blinds'>        

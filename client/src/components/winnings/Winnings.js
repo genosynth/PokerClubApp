@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function Winnings({game}) {
+function Winnings() {
 const [total, setTotal] = useState(()=>{
     if (JSON.parse(localStorage.getItem("pokerapp")).total){
         return JSON.parse(localStorage.getItem("pokerapp")).total
@@ -30,9 +30,7 @@ console.log(percentages)
       })
         )
 }
-  return (
-  <div></div>
-  )
+
 }
 
 export default Winnings

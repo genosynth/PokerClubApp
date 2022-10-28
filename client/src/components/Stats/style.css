@@ -1,0 +1,22 @@
+.templateStats {
+    background-color: blue;
+    color: yellow;
+    align-items: center;
+}
+
+.results {
+    
+    font-size: 30px;
+}
+
+.otherbox h3 {
+
+  color: yellow;
+   
+
+}
+
+.otherbox {
+    padding: 2%;
+    color: white;
+}

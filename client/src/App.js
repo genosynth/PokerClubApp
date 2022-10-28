@@ -8,6 +8,8 @@ import Players from "./components/Players/Players";
 import ListKnocked from "./components/Players/ListKnocked";
 import Button from "react-bootstrap/Button";
 import Winnings from "./components/winnings/Winnings"
+import WinStats from "./components/Stats/WinStats"
+import OtherStats from "./components/Stats/OtherStats"
 
 function App() {
   const [game, setGame] = useState(() => {
@@ -27,7 +29,7 @@ function App() {
     if (localStorage.getItem("pokerapplyrs")) {
       return JSON.parse(localStorage.getItem("pokerapplyrs")).length;
     } else {
-      return 0;
+      return 4;
     }
   }); //this is used to get the total players in the Player Component and then display the placing of the players accordingly.
   const [lvl, setLvl] = useState(() => {
@@ -36,16 +38,43 @@ function App() {
     } else return 1;
   });
 
+  const [message, updateMessage] = useState("UNQUALIFIED")
+  const [msgStyle, updayeMsgStyle] = useState({color:"red"})
+
+  function checkStatus(){
+    let prizes = game.percentages.split(",").length
+    let playersLeft = numOfPlayers-knockedOutPlayers.length
+    if(playersLeft>(prizes+2)){
+      updateMessage("UNQUALIFIED")
+    }
+
+    if (playersLeft==prizes+2){
+      updateMessage("BUBBLE")
+      updayeMsgStyle({color:"orange"})
+    }
+
+    if (playersLeft<=prizes+1){
+      updateMessage("MONEY €")
+      updayeMsgStyle({color:"green"})
+    }
+  }
+
   function addToKnockedOut(name) {
     name = `${numOfPlayers - knockedOutPlayers.length} - ${name}`;
     setKnockedOutPlayers([name, ...knockedOutPlayers]);
+    checkStatus()
   }
 
   function createGame(players, blinds, stacks, total, percentages) {
-    let temp = { ...players, ...blinds, stacks, percentages, total };
+    let date = new Date()
+    let hrs = date.getHours()
+    let mins = date.getMinutes()
+    let timeOfGame = `${hrs}:${mins}`
+    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame };
+    
     localStorage.setItem("pokerapp", JSON.stringify(temp));
-
     setGame(temp);
+    
   }
 
   const [currentLevel, setCurrentLevel] = useState(() => {
@@ -94,7 +123,7 @@ function App() {
 
       const interval = setInterval(() => {
         updateStyle({
-          backgroundColor: "rgba(255, 0, 0, 0.300)",
+          backgroundColor: "rgba(255, 0, 0)",
         });
 
         setTimeout(function () {
@@ -106,11 +135,11 @@ function App() {
     }
   }, [bool]);
 
-  if (game != null) {
+  if (game !=null && numOfPlayers-knockedOutPlayers.length!==0 ) {
     return (
       <div className="template">
         <div style={style}>
-          <h5>PLAYERS</h5>
+          <h5>PLAYERS {numOfPlayers-knockedOutPlayers.length}/{numOfPlayers}</h5>
           <Players
             game={game}
             addToKnockedOut={addToKnockedOut}
@@ -153,6 +182,8 @@ function App() {
                 setLvl(1);
                 setCurrentLevel("level1");
                 setProvisionLevel("level2");
+               updateMessage("UNQUALIFIED")
+                updayeMsgStyle({color:"red"})
 
                 localStorage.removeItem("pokerapp");
                 localStorage.removeItem("pokerapplvl");
@@ -164,7 +195,7 @@ function App() {
           </Button>
         </div>
 
-        <div style={style}>
+        <div className="righthandside" style={style}>
           <h4>Next Level</h4>
           <h5>SB - {game[provisionLevel].sb} </h5>
           <h5>BB - {game[provisionLevel].bb}</h5>
@@ -177,10 +208,58 @@ function App() {
             <h4>Payout Structure</h4>
             <Winnings></Winnings>
           </div>
+
+            <div className="status" style={{border:"none"}}>
+              <h3 style={msgStyle}>{message}</h3>
+
+            </div>
+         
         </div>
       </div>
     );
   }
+  
+   if (game!==null && numOfPlayers-knockedOutPlayers.length==0){
+    return <div className="templateStats">
+      <h1>RESULTS</h1>
+        <div className="centreDiv">
+          <div style={{padding:"2%"}}>
+            <h3>Placings</h3>
+            <WinStats knockedOutPlayers={knockedOutPlayers} game={game}></WinStats>
+            <Button
+            variant="primary"
+            onClick={() => {
+              if (
+                window.confirm(
+                  "Are you sure you want to clear the game and start over?"
+                )
+              ) {
+                setGame(null);
+                setKnockedOutPlayers([]);
+                setLvl(1);
+                setCurrentLevel("level1");
+                setProvisionLevel("level2");
+               updateMessage("UNQUALIFIED")
+                updayeMsgStyle({color:"red"})
+
+                localStorage.removeItem("pokerapp");
+                localStorage.removeItem("pokerapplvl");
+                localStorage.removeItem("pokerapplyrs");
+              }
+            }}
+          >
+            Clear
+        </Button>
+          </div>
+          <OtherStats game={game} lvl={lvl}></OtherStats>
+          
+        </div>
+      
+        
+
+     
+      </div>
+  } 
 
   return (
     <div>
