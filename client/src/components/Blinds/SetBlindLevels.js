@@ -1,6 +1,7 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef,useEffect} from 'react'
 import './styleBlinds.css'
 import Button from 'react-bootstrap/Button';
+import template1 from './templatesOfBlinds'
 
 function BlindLevels({createGame}) {
 
@@ -219,13 +220,41 @@ function handleTimeofBlinds(){
   setTotal(pool)
  }
 
+ const [template, setTemplate] = useState("0") //this is for actually using to create game
+ const [ui, setUi] = useState("0") // this is used just to display different choices in UI 
+
+ const handleTemplates = (event) =>{
+ 
+  let ans = event.target.value
+
+  if (ans=="0"){
+
+    setTemplate("0")
+    setUi("0")
+    setTempStyle({visibility:"visible"})
+  }
+ 
+  if (ans=="1"){
+    let temp = template1()
+    temp["time"] = blindTime.current.value
+    setTemplate(temp)
+    setUi("1")
+    setTempStyle({visibility:"hidden"})
+  }    
+  
+ }
+
+
+ const [tempStyle, setTempStyle] = useState({visibility:"visible"})
+
+
 
   return (
     <form className='setblinds'style={{visibility:style}} onSubmit={(event)=>{
       event.preventDefault()
       if(window.confirm("Confirm?")){
-       
-        createGame(players,blinds,stacks,total,percentages)
+       if(template!="0"){ createGame(players,template,stacks,total,percentages)}
+       if(template==="0"){ createGame(players,blinds,stacks,total,percentages)}
         setStyle("hidden")}     
       }      
 
@@ -281,7 +310,7 @@ function handleTimeofBlinds(){
        <label>Prize Pool €</label>
        <input type="number" min ="10" onChange={handleTotal}></input>
       <label>Prize Winnings</label>
-          <select value={percentages} name="prizepool" onChange={handlePercentages}>
+      <select value={percentages} name="prizepool" onChange={handlePercentages}>
           <option  value="100" >1 Player Paid - 100%</option>
           <option value="70,30">2 Players Paid - 70% 30%</option>
           <option value="60,40">2 Players Paid - 60% 40%</option>    
@@ -289,10 +318,20 @@ function handleTimeofBlinds(){
           <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>            
         
        </select>
+
+       <label>Blind Templates</label>
+      <select value={ui} name="blind-templates" onChange={handleTemplates}>
+          <option value="0"> None </option>
+          <option  value="1"> Template 1</option>
+             
+        
+       </select>
+
+       <Button type='submit' variant="outline-dark">Create</Button>
      
       </div>
       
-      <div className='blinds'>        
+      <div className='blinds' style={tempStyle}>        
       
 
       <label>Level 1 &nbsp; 
@@ -350,18 +389,18 @@ function handleTimeofBlinds(){
       <input type="number" placeholder='Ante' ref={ante9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value, ante9.current.value)}}></input>
       </label>
 
-      <label>Level 10 &nbsp; 
+      <label>Level 10
       <input type="number" placeholder='Small Blind' ref={sb10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value)}}></input>
       <input type="number" placeholder='Big Blind' ref={bb10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value)}}></input>
       <input type="number" placeholder='Ante' ref={ante10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value, ante10.current.value)}}></input>
       </label>
     
-      <Button type='submit' variant="outline-dark">Create</Button>
+      
    
 
       </div>
 
-      <div className='blinds'>
+      <div className='blinds'  style={tempStyle}>
 
       <label>Level 11 &nbsp; 
       <input type="number" placeholder='Small Blind' ref={sb11} onChange={()=>{handleUpdateBlinds("level11",sb11.current.value,bb11.current.value)}}></input>
@@ -424,6 +463,8 @@ function handleTimeofBlinds(){
       </label>
     
         </div>
+
+       
 
       
     </form>

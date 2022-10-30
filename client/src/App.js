@@ -182,7 +182,7 @@ function App() {
                 setLvl(1);
                 setCurrentLevel("level1");
                 setProvisionLevel("level2");
-               updateMessage("UNQUALIFIED")
+                updateMessage("UNQUALIFIED")
                 updayeMsgStyle({color:"red"})
 
                 localStorage.removeItem("pokerapp");
