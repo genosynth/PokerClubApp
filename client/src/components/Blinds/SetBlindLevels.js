@@ -304,7 +304,7 @@ function handleTimeofBlinds(){
         <label>Blind Levels (minutes)</label>
       <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
 
-      <label>Starting Stacks</label>
+      <label>Starting Stacks (In thousands eg. 30)</label>
       <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
         
        <label>Prize Pool €</label>
@@ -320,12 +320,14 @@ function handleTimeofBlinds(){
        </select>
 
        <label>Blind Templates</label>
+       
       <select value={ui} name="blind-templates" onChange={handleTemplates}>
           <option value="0"> None </option>
-          <option  value="1"> Template 1</option>
+          <option  value="1"> League Heats </option>
              
         
        </select>
+       <span><i>Change only after having entered blinds duration</i></span>
 
        <Button type='submit' variant="outline-dark">Create</Button>
      

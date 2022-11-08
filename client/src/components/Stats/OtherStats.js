@@ -12,6 +12,14 @@ function OtherStats({lvl,game}) {
     }
     )
 
+    const [duration] = useState(()=>{
+      if (dateEnded.split(":")[0]<game.timeOfGame.split(":")[0]){
+        return (((((parseInt(dateEnded.split(":")[0])+24)*60))+parseInt(dateEnded.split(":")[1]))-((game.timeOfGame.split(":")[0]*60)+parseInt((game.timeOfGame.split(":")[1]))))/60
+      } else {
+        return (((dateEnded.split(":")[0]*60)+parseInt(dateEnded.split(":")[1]))-((game.timeOfGame.split(":")[0]*60)+parseInt((game.timeOfGame.split(":")[1]))))/60
+      }
+    })
+
   return (
     <div className='otherbox'>
         <h3>OtherStats</h3>
@@ -20,7 +28,8 @@ function OtherStats({lvl,game}) {
         <h4>Players Cashed Out - {game.percentages.split(",").length}</h4>
         <h4>Started at - {game.timeOfGame}</h4>
         <h4>Finished at - {dateEnded}</h4>
-        <h4>Duration - {game.timeOfGame.split(":")[0]-dateEnded.split(":")[0]} hrs {dateEnded.split(":")[1]-game.timeOfGame.split(":")[1]} mins</h4>
+        <h4>Test - {dateEnded.split(":")[0]-game.timeOfGame.split(":")[0]} hrs {dateEnded.split(":")[1]-game.timeOfGame.split(":")[1]} mins</h4>
+        <h4>Duration - {Math.floor(duration)} hrs {Math.ceil((duration-Math.floor(duration))*60)} mins</h4>
     </div>
   )
 }
