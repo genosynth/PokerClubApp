@@ -28,7 +28,7 @@ function OtherStats({lvl,game}) {
         <h4>Players Cashed Out - {game.percentages.split(",").length}</h4>
         <h4>Started at - {game.timeOfGame}</h4>
         <h4>Finished at - {dateEnded}</h4>
-        <h4>Test - {dateEnded.split(":")[0]-game.timeOfGame.split(":")[0]} hrs {dateEnded.split(":")[1]-game.timeOfGame.split(":")[1]} mins</h4>
+       {/*  <h4>Test - {dateEnded.split(":")[0]-game.timeOfGame.split(":")[0]} hrs {dateEnded.split(":")[1]-game.timeOfGame.split(":")[1]} mins</h4> */}
         <h4>Duration - {Math.floor(duration)} hrs {Math.ceil((duration-Math.floor(duration))*60)} mins</h4>
     </div>
   )
