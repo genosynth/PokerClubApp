@@ -2,7 +2,7 @@
     
     display: flex;   
     text-align: center;
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.5);
     color: yellow;
     
 
@@ -19,32 +19,44 @@ font-family: 'Raleway', sans-serif;
 }
 .template div{
     flex-grow: 1;
-    border: solid 2px yellow;
-    border-radius: 2px;
-  
-   
-   
+    border: solid 1px yellow;
+    border-radius: 5px;
+       
    
 }
 
 .timerDiv {
-    width: 500px;
+    width: 30%;
     color:white;
+    text-align: center;
+    
    
 }
 
 h1 {
     font-size: 100px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
      
+}
+
+.timerDiv h2 {
+    font-size: 220px;
+    color: rgba(255, 217, 0, 0.904);
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.timerDiv h3 {
+    font-size: 80px;
+    text-shadow: 3px 3px rgba(255, 0, 0, 0.651)
+    
 }
 
 .template div h1 {
     font-size: 150px;
+   
 }
 
-.template div h2 {
-    font-size: 80px ;
-}
+
 
 .template div h4, h5 {
     font-size: 40px;
@@ -52,14 +64,21 @@ h1 {
 
 
 
-.template div h6, h3 {
+.template div h6 {
     font-size: 40px;
     
 }
 
 .righthandside {
- color: yellow;
+ color: rgba(255, 255, 0, 0.651);
+ width:0%;
+ text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
 
+.left-hand-side {
+    color: rgba(255, 255, 0, 0.651);
+    width:10px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 .status {
@@ -75,7 +94,8 @@ h1 {
 .centreDiv {
     display: flex;
     flex-direction: row;
-  justify-content: center;
+    justify-content: center;
+    padding: 5%;
   
   
 }

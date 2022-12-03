@@ -23,6 +23,7 @@ function App() {
   const [style, updateStyle] = useState({
     backgroundColor: "none",
   });
+  const [hidden, setHidden] = useState({visibility:"visible"})
 
   const [knockedOutPlayers, setKnockedOutPlayers] = useState([]);
   const [numOfPlayers, setNumOfPlayers] = useState(() => {
@@ -39,7 +40,10 @@ function App() {
   });
 
   const [message, updateMessage] = useState("UNQUALIFIED")
-  const [msgStyle, updayeMsgStyle] = useState({color:"red"})
+  const [msgStyle, updayeMsgStyle] = useState({color:"rgba(255, 0, 0, 0.651)"})
+
+  const [toggle, setToggle] = useState("Hide")
+  const [blindText, setBlindtext] = useState({fontSize:"220px"})
 
   function checkStatus(){
     let prizes = game.percentages.split(",").length
@@ -50,12 +54,12 @@ function App() {
 
     if (playersLeft==prizes+2){
       updateMessage("BUBBLE")
-      updayeMsgStyle({color:"orange"})
+      updayeMsgStyle({color:"rgba(255, 166, 0, 0.61)"})
     }
 
     if (playersLeft<=prizes+1){
       updateMessage("MONEY €")
-      updayeMsgStyle({color:"green"})
+      updayeMsgStyle({color:"rgba(0, 128, 0, 0.705)"})
     }
   }
 
@@ -123,7 +127,7 @@ function App() {
 
       const interval = setInterval(() => {
         updateStyle({
-          backgroundColor: "rgba(255, 0, 0)",
+          backgroundColor: "rgba(255, 0, 0, 0.651)",
         });
 
         setTimeout(function () {
@@ -138,7 +142,7 @@ function App() {
   if (game !=null && numOfPlayers-knockedOutPlayers.length!==0 ) {
     return (
       <div className="template">
-        <div style={style}>
+        <div className="left-hand-side" style={style}>
           <h5>PLAYERS {numOfPlayers-knockedOutPlayers.length}/{numOfPlayers}</h5>
           <Players
             game={game}
@@ -156,12 +160,14 @@ function App() {
           </h5>
           <h5 style={{ color: "red" }}>Knocked Out</h5>
           <ListKnocked knockedOutPlayers={knockedOutPlayers}></ListKnocked>
+        
         </div>
+        
 
         <div className="timerDiv" style={style}>
-          <h2>Level {lvl}</h2>
-          <h2>SB - {game[currentLevel].sb}</h2>
-          <h2>BB - {game[currentLevel].bb}</h2>
+          <h1>Level {lvl}</h1>
+          <h2 style={blindText}>{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
+          
           <h3>Ante - {game[currentLevel].ante}</h3>
           <TimerClock
             seconds={game.time * 60}
@@ -193,6 +199,21 @@ function App() {
           >
             Clear
           </Button>
+          <Button onClick={()=>{
+
+            if (hidden.visibility==="visible"){
+              setHidden({visibility:"hidden"})
+              setToggle("Show")
+              return
+            }
+
+            if (hidden.visibility==="hidden"){
+              setHidden({visibility:"visible"})
+              setToggle("Hide")
+              return
+            }
+        
+          }}>{toggle}</Button>
         </div>
 
         <div className="righthandside" style={style}>

@@ -22,7 +22,7 @@ function OtherStats({lvl,game}) {
 
   return (
     <div className='otherbox'>
-        <h3>OtherStats</h3>
+        <h3>Other Stats</h3>
         <h4>Ended at level - {lvl}</h4>
         <h4>Total Prize Pool - {game.total}€ </h4>
         <h4>Players Cashed Out - {game.percentages.split(",").length}</h4>

@@ -14,7 +14,7 @@ let percentages = game.percentages.split(",")
     if (isNaN(temp)) {temp=""}
     else {temp = ` WIN ${(percentages[knockedOutPlayers.indexOf(el)]/100)*total}€`}
    
-    return <div key={el}className='results' style={{border:"solid blue", color:"white"}}>
+    return <div key={el}className='results' style={{border:"none ", color:"white"}}>
         {el} <span style={{color:"lightgreen"}}>{temp}</span>
     </div>
 
