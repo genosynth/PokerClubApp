@@ -43,7 +43,7 @@ function App() {
   const [msgStyle, updayeMsgStyle] = useState({color:"rgba(255, 0, 0, 0.651)"})
 
   const [toggle, setToggle] = useState("Hide")
-  const [blindText, setBlindtext] = useState({fontSize:"220px"})
+
 
   function checkStatus(){
     let prizes = game.percentages.split(",").length
@@ -165,8 +165,8 @@ function App() {
         
 
         <div className="timerDiv" style={style}>
-          <h1>Level {lvl}</h1>
-          <h2 style={blindText}>{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
+          <h6>Level {lvl}</h6>
+          <h2 >{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
           
           <h3>Ante - {game[currentLevel].ante}</h3>
           <TimerClock
