@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/PokerClubApp/static/css/main.6f30282b.css",
+    "main.css": "/PokerClubApp/static/css/main.d7f906ae.css",
     "main.js": "/PokerClubApp/static/js/main.12194f9e.js",
     "static/media/alarmshort.mp3": "/PokerClubApp/static/media/alarmshort.b627a60d9fc820f796fc.mp3",
     "service-worker.js": "/PokerClubApp/service-worker.js",
     "static/media/four.jpg": "/PokerClubApp/static/media/four.7638ff7e1541d307b411.jpg",
     "index.html": "/PokerClubApp/index.html",
-    "main.6f30282b.css.map": "/PokerClubApp/static/css/main.6f30282b.css.map",
+    "main.d7f906ae.css.map": "/PokerClubApp/static/css/main.d7f906ae.css.map",
     "main.12194f9e.js.map": "/PokerClubApp/static/js/main.12194f9e.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f30282b.css",
+    "static/css/main.d7f906ae.css",
     "static/js/main.12194f9e.js"
   ]
 }

@@ -41,7 +41,7 @@ h1 {
 }
 
 .timerDiv h2 {
-    font-size: clamp(16px, 16vw, 220px);
+    font-size: clamp(16px, 9vw, 200px);
     color: rgba(255, 217, 0, 0.904);
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
@@ -79,7 +79,7 @@ h1 {
 }
 
 .righthandside div h3 {
-    font-size: clamp(16px, 3vw, 70px);
+   
 }
 
 .left-hand-side {
@@ -95,7 +95,7 @@ h1 {
 }
 
 .status h3 {
-    font-size: 60px;
+   font-size: clamp(14px, 2vw, 50px);
 }
 
 .centreDiv {
