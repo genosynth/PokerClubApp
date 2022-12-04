@@ -9,7 +9,7 @@ function Player({player,knockOut}) {
 
 
     <div>
-          <h6 onClick={knockOut} value={player}>{player}</h6>
+          <h6 onClick={knockOut} value={player} >{player}</h6>
           
     </div>
   

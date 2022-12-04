@@ -70,12 +70,12 @@ function App() {
     checkStatus()
   }
 
-  function createGame(players, blinds, stacks, total, percentages,tournamentName) {
+  function createGame(players, blinds, stacks, total, percentages,tournamentName, choice) {
     let date = new Date()
     let hrs = date.getHours()
     let mins = date.getMinutes()
     let timeOfGame = `${hrs}:${mins}`
-    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame, tournamentName };
+    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame, tournamentName , choice};
     
     localStorage.setItem("pokerapp", JSON.stringify(temp));
     setGame(temp);
@@ -101,8 +101,7 @@ function App() {
     audio.play();
     setBool(true);
     let temp = currentLevel;
-    temp = temp.split("")[temp.length - 1];
-    console.log(temp);
+    temp = temp.split("")[temp.length - 1];  
     temp = parseInt(temp);
     temp++;
 
@@ -167,7 +166,7 @@ function App() {
 
         <div className="timerDiv" style={style}>
           <h3>{game.tournamentName}</h3>
-          <h7>Level {lvl}</h7>
+          <h6>Level {lvl}</h6>
           <h2 sty>{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
           
           <h3>Ante - {game[currentLevel].ante}</h3>

@@ -247,6 +247,12 @@ function handleTimeofBlinds(){
 
  const [tempStyle, setTempStyle] = useState({visibility:"visible"})
  const [tournamentName, setTournamentName] =useState("")
+ const [randomSeatingChoice, setRandomSeating] = useState(true)
+
+ const handleRandomSeatChoice = (event) => {
+  let choice = event.target.value
+  setRandomSeating(choice)
+ }
 
  const handleTournamentName= (event) => {
  
@@ -259,14 +265,23 @@ function handleTimeofBlinds(){
     <form className='setblinds'style={{visibility:style}} onSubmit={(event)=>{
       event.preventDefault()
       if(window.confirm("Confirm?")){
-       if(template!="0"){ createGame(players,template,stacks,total,percentages,tournamentName)}
-       if(template==="0"){ createGame(players,blinds,stacks,total,percentages,tournamentName)}
+       if(template!="0"){ createGame(players,template,stacks,total,percentages,tournamentName,randomSeatingChoice)}
+       if(template==="0"){ createGame(players,blinds,stacks,total,percentages,tournamentName, randomSeatingChoice)}
         setStyle("hidden")}     
       }      
 
       }>
       <div className='seats'>
-        <label>Player 1&nbsp;&nbsp;
+      
+       
+        <div>
+        <label>Random Seating -&nbsp; </label>
+        <input type="radio" name="randomSeating" value={true}  onChange={handleRandomSeatChoice}/>Yes
+        <input type="radio" name="randomSeating" value={false} defaultChecked onChange={handleRandomSeatChoice}/>No
+        </div>
+       
+
+        <label>Player 1&nbsp;
            <input type="text" onChange={handlePlayer1}></input>
         </label>
        
@@ -316,7 +331,7 @@ function handleTimeofBlinds(){
       <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
         
        <label>Prize Pool €</label>
-       <input type="number" min ="10" onChange={handleTotal}></input>
+       <input type="number" min ="10" onChange={handleTotal} required></input>
       <label>Prize Winnings</label>
       <select value={percentages} name="prizepool" onChange={handlePercentages}>
           <option  value="100" >1 Player Paid - 100%</option>

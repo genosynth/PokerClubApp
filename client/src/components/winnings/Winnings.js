@@ -25,7 +25,7 @@ console.log(percentages)
     return (
       percentages.map((el)=>{
         return (
-        <h4>{percentages.indexOf(el)+1} - {total*(el/100)}€</h4>
+        <h4 key={el}>{percentages.indexOf(el)+1} - {total*(el/100)}€</h4>
         )
       })
         )

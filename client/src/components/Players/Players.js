@@ -38,7 +38,9 @@ const [players,setPlayers]=useState(()=>{
                 return array;
               }
             
-            temp = shuffle(temp)
+             
+              if (game.choice=="true"){ temp = shuffle(temp) }   // ----------------------------HERE-------------
+          
             let temp2 = []
             for (let i=0; i<=temp.length; i++){
                 if (temp[i]!=null){
