@@ -246,15 +246,21 @@ function handleTimeofBlinds(){
 
 
  const [tempStyle, setTempStyle] = useState({visibility:"visible"})
+ const [tournamentName, setTournamentName] =useState("")
 
+ const handleTournamentName= (event) => {
+ 
+  let name = event.target.value 
+  setTournamentName(name)
+}
 
 
   return (
     <form className='setblinds'style={{visibility:style}} onSubmit={(event)=>{
       event.preventDefault()
       if(window.confirm("Confirm?")){
-       if(template!="0"){ createGame(players,template,stacks,total,percentages)}
-       if(template==="0"){ createGame(players,blinds,stacks,total,percentages)}
+       if(template!="0"){ createGame(players,template,stacks,total,percentages,tournamentName)}
+       if(template==="0"){ createGame(players,blinds,stacks,total,percentages,tournamentName)}
         setStyle("hidden")}     
       }      
 
@@ -300,9 +306,11 @@ function handleTimeofBlinds(){
           <input type="text" onChange={handlePlayer10}></input>
         </label>
         
+        <label>Tournament Name</label>
+        <input type="text" onChange={handleTournamentName}></input>
 
         <label>Blind Levels (minutes)</label>
-      <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
+       <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
 
       <label>Starting Stacks (In thousands eg. 30)</label>
       <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
@@ -315,7 +323,8 @@ function handleTimeofBlinds(){
           <option value="70,30">2 Players Paid - 70% 30%</option>
           <option value="60,40">2 Players Paid - 60% 40%</option>    
           <option value="50,30,20">3 Players Paid - 50% 30% 20% </option>    
-          <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>            
+          <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>   
+          <option value="40,30,20,10">4 Players Paid - 40% 30% 20% 10% </option>          
         
        </select>
 

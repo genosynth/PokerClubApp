@@ -23,6 +23,7 @@ function App() {
   const [style, updateStyle] = useState({
     backgroundColor: "none",
   });
+
   const [hidden, setHidden] = useState({visibility:"visible"})
 
   const [knockedOutPlayers, setKnockedOutPlayers] = useState([]);
@@ -40,7 +41,7 @@ function App() {
   });
 
   const [message, updateMessage] = useState("UNQUALIFIED")
-  const [msgStyle, updayeMsgStyle] = useState({color:"rgba(255, 0, 0, 0.651)"})
+  const [msgStyle, updateMsgStyle] = useState({color:"rgba(255, 0, 0, 0.651)"})
 
   const [toggle, setToggle] = useState("Hide")
 
@@ -54,12 +55,12 @@ function App() {
 
     if (playersLeft==prizes+2){
       updateMessage("BUBBLE")
-      updayeMsgStyle({color:"rgba(255, 166, 0, 0.61)"})
+      updateMsgStyle({color:"rgba(255, 166, 0, 0.61)"})
     }
 
     if (playersLeft<=prizes+1){
       updateMessage("MONEY €")
-      updayeMsgStyle({color:"rgba(0, 128, 0, 0.705)"})
+      updateMsgStyle({color:"rgba(0, 128, 0, 0.705)"})
     }
   }
 
@@ -69,12 +70,12 @@ function App() {
     checkStatus()
   }
 
-  function createGame(players, blinds, stacks, total, percentages) {
+  function createGame(players, blinds, stacks, total, percentages,tournamentName) {
     let date = new Date()
     let hrs = date.getHours()
     let mins = date.getMinutes()
     let timeOfGame = `${hrs}:${mins}`
-    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame };
+    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame, tournamentName };
     
     localStorage.setItem("pokerapp", JSON.stringify(temp));
     setGame(temp);
@@ -127,7 +128,7 @@ function App() {
 
       const interval = setInterval(() => {
         updateStyle({
-          backgroundColor: "rgba(255, 0, 0, 0.651)",
+          backgroundColor: "rgba(255, 0, 0, 0.700)",
         });
 
         setTimeout(function () {
@@ -165,8 +166,9 @@ function App() {
         
 
         <div className="timerDiv" style={style}>
-          <h6>Level {lvl}</h6>
-          <h2 >{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
+          <h3>{game.tournamentName}</h3>
+          <h7>Level {lvl}</h7>
+          <h2 sty>{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
           
           <h3>Ante - {game[currentLevel].ante}</h3>
           <TimerClock
@@ -189,7 +191,7 @@ function App() {
                 setCurrentLevel("level1");
                 setProvisionLevel("level2");
                 updateMessage("UNQUALIFIED")
-                updayeMsgStyle({color:"red"})
+                updateMsgStyle({color:"red"})
 
                 localStorage.removeItem("pokerapp");
                 localStorage.removeItem("pokerapplvl");
@@ -199,21 +201,7 @@ function App() {
           >
             Clear
           </Button>
-          <Button onClick={()=>{
-
-            if (hidden.visibility==="visible"){
-              setHidden({visibility:"hidden"})
-              setToggle("Show")
-              return
-            }
-
-            if (hidden.visibility==="hidden"){
-              setHidden({visibility:"visible"})
-              setToggle("Hide")
-              return
-            }
-        
-          }}>{toggle}</Button>
+       
         </div>
 
         <div className="righthandside" style={style}>
@@ -260,8 +248,8 @@ function App() {
                 setLvl(1);
                 setCurrentLevel("level1");
                 setProvisionLevel("level2");
-               updateMessage("UNQUALIFIED")
-                updayeMsgStyle({color:"red"})
+                updateMessage("UNQUALIFIED")
+                updateMsgStyle({color:"red"})
 
                 localStorage.removeItem("pokerapp");
                 localStorage.removeItem("pokerapplvl");
