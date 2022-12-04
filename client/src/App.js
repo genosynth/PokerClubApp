@@ -229,7 +229,7 @@ function App() {
   
    if (game!==null && numOfPlayers-knockedOutPlayers.length==0){
     return <div className="templateStats">
-      <h1>RESULTS</h1>
+      <h1 className="results-header">RESULTS</h1>
         <div className="centreDiv">
           <div style={{padding:"2%"}}>
             <h3>Placings</h3>
