@@ -204,10 +204,10 @@ function App() {
         </div>
 
         <div className="righthandside" style={style}>
-          <h4>Next Level</h4>
-          <h5>SB - {game[provisionLevel].sb} </h5>
+          <h4 style={{borderBottom:"solid 1px"}}>Next Level</h4>
+          <h5 >SB - {game[provisionLevel].sb} </h5>
           <h5>BB - {game[provisionLevel].bb}</h5>
-          <h5>Ante - {game[provisionLevel].ante}</h5>
+          <h5 style={{color:"white"}}>Ante - {game[provisionLevel].ante}</h5>
 
           <div>
             <h4>Prize Pool - {game.total}€</h4>
