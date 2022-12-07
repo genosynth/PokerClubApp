@@ -90,7 +90,7 @@ const TimerClock = ({ seconds,nextBlinds }) => {
 
     if (seconds>59){
         return (
-            <div onClick={handleStartButton}className="time" style={{borderBottom:"none", borderLeft:"none",borderRight:"none"}}>
+            <div onClick={handleStartButton} className="time" style={{borderBottom:"none", borderLeft:"none",borderRight:"none"}}>
               <h1 style={style}>{Math.floor(timeLeftSec/60)} : {timeLeftSec-(60*(Math.floor(timeLeftSec/60)))}</h1>
               <Button variant="outline-danger" onClick={handleRestartButton} >Restart</Button>
               <Button  variant="outline-warning" onClick={handlePauseButton}>Pause</Button>

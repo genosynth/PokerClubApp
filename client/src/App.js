@@ -100,8 +100,12 @@ function App() {
   function nextBlinds() {
     audio.play();
     setBool(true);
+   
     let temp = currentLevel;
-    temp = temp.split("")[temp.length - 1];  
+    if (lvl>19){return}
+    if (lvl<10){temp = temp.split("")[temp.length - 1];}
+    if (lvl>=10){temp =  temp.split("")[temp.length-2] + temp.split("")[temp.length-1]}
+    
     temp = parseInt(temp);
     temp++;
 
@@ -198,8 +202,20 @@ function App() {
               }
             }}
           >
-            Clear
+            Clear Game
           </Button>
+          <Button 
+          variant="outline-light"
+          onClick={()=>{
+
+            if ( window.confirm("Are you sure you want to skip this level?")){
+              nextBlinds()
+            }
+           
+          }}
+          >
+          Next Blinds
+        </Button>
        
         </div>
 
@@ -258,6 +274,7 @@ function App() {
           >
             Clear
         </Button>
+       
           </div>
           <OtherStats game={game} lvl={lvl}></OtherStats>
           
