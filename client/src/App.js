@@ -272,7 +272,7 @@ function App() {
               }
             }}
           >
-            Clear
+            Clear Game
         </Button>
        
           </div>
