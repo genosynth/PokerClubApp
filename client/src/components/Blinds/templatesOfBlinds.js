@@ -28,4 +28,29 @@ function  template1 (){
 
   }
 
-export default template1
+  function  template2 (){
+    return {
+     time:15,
+     level1:{sb:25,bb:50,ante:null},
+     level2:{sb:50,bb:100,ante:null},
+     level3:{sb:75,bb:150,ante:null},
+     level4:{sb:100,bb:200,ante:null},
+     level5:{sb:100,bb:200,ante:25},       
+     level6:{sb:200,bb:400,ante:50},
+     level7:{sb:300,bb:600,ante:75},
+     level8:{sb:500,bb:1000,ante:100},
+     level9:{sb:800,bb:1600,ante:200},    
+     level10:{sb:1500,bb:3000,ante:400},
+     level11:{sb:2000,bb:4000,ante:500},   
+     level12:{sb:4000,bb:8000,ante:1000},
+     level13:{sb:6000,bb:12000,ante:1500},
+     level14:{sb:10000,bb:20000,ante:3000},
+     level15:{sb:15000,bb:30000,ante:4000},    
+     level16:{sb:30000,bb:60000,ante:8000},
+     level17:{sb:30000,bb:60000,ante:8000},
+ 
+    }
+ 
+   }
+
+export {template1,template2}

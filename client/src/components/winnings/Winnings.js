@@ -21,7 +21,7 @@ const [percentages, setpercentages] = useState(()=>{
 if (percentages){
 
 
-console.log(percentages)
+
     return (
       percentages.map((el)=>{
         return (

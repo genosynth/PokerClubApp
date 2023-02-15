@@ -3,9 +3,10 @@ import './styleTimer.css'
 import Button from 'react-bootstrap/Button';
 
 const TimerClock = ({ seconds,nextBlinds }) => {
-    // initialize timeLeft with the seconds prop
 
 
+    const [startOfTime] = useState(Date.now())
+    const [timeDiffer, setTimeDiffer] = useState()
     const [timeLeftSec, setTimeLeftSec] = useState(seconds);
     const [pause, setPause] = useState(true);
     const [style, setStyle] = useState({
@@ -62,6 +63,12 @@ const TimerClock = ({ seconds,nextBlinds }) => {
       const intervalId = setInterval(() => {
         if (!pause){
           setTimeLeftSec(timeLeftSec - 1);
+          let current = Date.now()
+          
+          let temp = current-startOfTime
+          console.log(temp-timeDiffer)
+          setTimeDiffer(temp)
+       
         }
         
         }, 1000);
@@ -74,18 +81,7 @@ const TimerClock = ({ seconds,nextBlinds }) => {
       // when we update it
     }, [timeLeftSec,pause]);
 
-
-    const zeroSeconds = () =>{
-   
-
-        if(timeLeftSec-(60*(Math.floor(timeLeftSec/60)))<10){
-        return `0${timeLeftSec}`
-      }
-
-      else {
-        return timeLeftSec-(60*(Math.floor(timeLeftSec/60)))
-      }
-    }
+    
   
 
     if (seconds>59){

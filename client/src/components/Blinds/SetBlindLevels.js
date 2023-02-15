@@ -1,7 +1,8 @@
 import React, {useState, useRef,useEffect} from 'react'
 import './styleBlinds.css'
 import Button from 'react-bootstrap/Button';
-import template1 from './templatesOfBlinds'
+import {template1} from './templatesOfBlinds'
+import {template2} from './templatesOfBlinds'
 
 function BlindLevels({createGame}) {
 
@@ -242,6 +243,14 @@ function handleTimeofBlinds(){
     setTempStyle({visibility:"hidden"})
   }    
   
+  if (ans=="2"){
+    let temp = template2()
+    temp["time"] = blindTime.current.value
+    setTemplate(temp)
+    setUi("2")
+    setTempStyle({visibility:"hidden"})
+    }   
+  
  }
 
 
@@ -348,6 +357,7 @@ function handleTimeofBlinds(){
       <select value={ui} name="blind-templates" onChange={handleTemplates}>
           <option value="0"> None </option>
           <option  value="1"> League Heats </option>
+          <option value="2"> Heat Blinds 8 Seater</option>
              
         
        </select>
