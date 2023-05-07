@@ -9,7 +9,7 @@ function KnockedOut({knockedOutPlayers}) {
 
   return (
    players.map(el =>{
-    return <h5 key={el}>{el}</h5>
+    return <h6 key={el} style={{ color: "rgba(255, 0, 0, 0.551)"}}>{el}</h6>
    })
   )
 }

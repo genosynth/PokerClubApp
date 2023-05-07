@@ -45,6 +45,9 @@ function App() {
 
   const [toggle, setToggle] = useState("Hide")
 
+  
+
+
 
   function checkStatus(){
     let prizes = game.percentages.split(",").length
@@ -70,7 +73,8 @@ function App() {
     checkStatus()
   }
 
-  function createGame(players, blinds, stacks, total, percentages,tournamentName, choice) {
+  function createGame(players, blinds, stacks, total, percentages,tournamentName, choice,numOfLevels) {
+   
     let date = new Date()
     let hrs = date.getHours()
     let mins = date.getMinutes()
@@ -102,7 +106,7 @@ function App() {
     setBool(true);
    
     let temp = currentLevel;
-    if (lvl>19){return}
+    //if (lvl>=(game.length-17)){return} // this part to change according to number of blind levels
     if (lvl<10){temp = temp.split("")[temp.length - 1];}
     if (lvl>=10){temp =  temp.split("")[temp.length-2] + temp.split("")[temp.length-1]}
     
@@ -122,12 +126,38 @@ function App() {
     );
   }
 
+
+  function prevBlinds() {
+
+  }
+
+  const keyPress = (event) => {
+    if (event.key==="ArrowRight"){
+      //event.preventDefault()
+      if ( window.confirm("Are you sure you want to proceed to the next level?")){
+        return nextBlinds()
+        
+      }
+      
+      return 
+    }
+
+  }
+      
+  useEffect(()=>{ 
+
+    window.addEventListener("keydown", keyPress);
+    return () => window.removeEventListener("keydown", keyPress);    
+                
+
+  })
+
   const [bool, setBool] = useState(false);
   useEffect(() => {
     if (bool) {
       setTimeout(function () {
         setBool(false);
-      }, 5000);
+      }, 1400); // this is the time it takes flashing - reduce for less flashes, increase for more flashes
 
       const interval = setInterval(() => {
         updateStyle({
@@ -143,17 +173,19 @@ function App() {
     }
   }, [bool]);
 
+
+
   if (game !=null && numOfPlayers-knockedOutPlayers.length!==0 ) {
     return (
       <div className="template">
         <div className="left-hand-side" style={style}>
-          <h5>PLAYERS {numOfPlayers-knockedOutPlayers.length}/{numOfPlayers}</h5>
+          <h6 style={{color:"white"}}>PLAYERS {numOfPlayers-knockedOutPlayers.length}/{numOfPlayers}</h6>
           <Players
             game={game}
             addToKnockedOut={addToKnockedOut}
             setNumOfPlayers={setNumOfPlayers}
           ></Players>
-          <h5 style={{ color: "green" }}>
+          <h6 style={{ color: "green" }}>
             {" "}
             Avg Stack -{" "}
             {Math.floor(
@@ -161,8 +193,8 @@ function App() {
                 (numOfPlayers - knockedOutPlayers.length)
             )}
             K
-          </h5>
-          <h5 style={{ color: "red" }}>Knocked Out</h5>
+          </h6>
+          <h6 style={{ color: "red" }}>Knocked Out</h6>
           <ListKnocked knockedOutPlayers={knockedOutPlayers}></ListKnocked>
         
         </div>
@@ -178,9 +210,8 @@ function App() {
             seconds={game.time * 60}
             nextBlinds={nextBlinds}
           ></TimerClock>
-          <span>Blind Durations - {game.time} minutes </span>
-
-          <Button
+            <Button
+            size="lg"
             variant="outline-primary"
             onClick={() => {
               if (
@@ -204,22 +235,28 @@ function App() {
           >
             Clear Game
           </Button>
-          <Button 
-          variant="outline-light"
-          onClick={()=>{
 
-            if ( window.confirm("Are you sure you want to skip this level?")){
+          <span> Blind Durations - {game.time} minutes </span>
+
+        
+          {/*<Button 
+          size="lg"
+          variant="outline-light"
+         
+          onClick={()=>{
+          
+            if ( window.confirm("Are you sure you want to proceed to the next level?")){
               nextBlinds()
             }
            
           }}
           >
           Next Blinds
-        </Button>
+        </Button>*/}
        
         </div>
 
-        <div className="righthandside" style={style}>
+        <div style={style}>
           <h4 style={{borderBottom:"solid 1px"}}>Next Level</h4>
           <h5 >SB - {game[provisionLevel].sb} </h5>
           <h5>BB - {game[provisionLevel].bb}</h5>

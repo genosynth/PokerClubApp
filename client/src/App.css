@@ -3,7 +3,8 @@
     display: flex;   
     text-align: center;
     background-color: rgba(0, 0, 255, 0.5);
-    color: yellow;   
+    color: rgba(255, 255, 0, 0.651);
+    
 
   
     
@@ -41,14 +42,15 @@ h1 {
 
 .timerDiv h3 {
     font-size: clamp(14px, 4vw, 200px);
-    text-shadow: 1px 5px rgba(255, 0, 0, 0.651);
+    text-shadow: 1px 1px rgba(255, 0, 0, 0.651);
     color: white;
     
     
 }
 
-.timerDiv button {
-    font-size: clamp(16px, 8vw, 35px);
+.timerDiv {
+    width: 50%;
+    
 }
 
 
@@ -57,9 +59,16 @@ h1 {
     color: white;
 }
 
-.template div h4, h5 {
+.template div h4 {
     font-size: clamp(16px, 4vw, 40px);
-    text-shadow: 1px 1px rgba(255, 0, 0, 0.651)
+   
+
+}
+
+.template div h5 {
+
+    font-size: clamp(16px, 4vw, 80px);
+    color: yellow;
 
 }
 
@@ -90,13 +99,12 @@ h1 {
 
 .righthandside h4 {
     color:rgba(255, 255, 0, 0.719);
- 
 
    
 }
 
 .righthandside h5 {
-    color:rgba(255, 255, 0, 0.856);
+    
     font-size: clamp(16px, 4vw, 70px);
 }
 
@@ -104,13 +112,14 @@ h1 {
 
 .left-hand-side {
     color: rgba(255, 255, 0, 0.651);
-    width:10px;
+ 
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 .left-hand-side div {
     border-right: none;
 }
+
 
 .status {
    margin-top: 15%;
@@ -145,4 +154,5 @@ h1 {
     color: rgba(205, 217, 255, 0.795);
     text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px blue, 0 0 5px darkblue;
 }
+
 

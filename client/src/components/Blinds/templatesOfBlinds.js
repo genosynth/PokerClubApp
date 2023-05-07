@@ -1,5 +1,5 @@
 
-function  template1 (){
+function  template1 (){ // Leagye Heats
    return {
     time:15,
     level1:{sb:25,bb:50,ante:null},
@@ -28,7 +28,7 @@ function  template1 (){
 
   }
 
-  function  template2 (){
+  function  template2 (){ // 8 Seater Heats
     return {
      time:15,
      level1:{sb:25,bb:50,ante:null},
@@ -38,16 +38,16 @@ function  template1 (){
      level5:{sb:100,bb:200,ante:25},       
      level6:{sb:200,bb:400,ante:50},
      level7:{sb:300,bb:600,ante:75},
-     level8:{sb:500,bb:1000,ante:100},
-     level9:{sb:800,bb:1600,ante:200},    
-     level10:{sb:1500,bb:3000,ante:400},
-     level11:{sb:2000,bb:4000,ante:500},   
-     level12:{sb:4000,bb:8000,ante:1000},
-     level13:{sb:6000,bb:12000,ante:1500},
-     level14:{sb:10000,bb:20000,ante:3000},
-     level15:{sb:15000,bb:30000,ante:4000},    
-     level16:{sb:30000,bb:60000,ante:8000},
-     level17:{sb:30000,bb:60000,ante:8000},
+     level8:{sb:500,bb:"1,000",ante:100},
+     level9:{sb:800,bb:"1,600",ante:200},    
+     level10:{sb:"1,500",bb:"3,000",ante:400},
+     level11:{sb:"2,000",bb:"4,000",ante:500},   
+     level12:{sb:"4,000",bb:"8,000",ante:"1,000"},
+     level13:{sb:"6,000",bb:"12,000",ante:"1,500"},
+     level14:{sb:"10,000",bb:"20,000",ante:"3,000"},
+     level15:{sb:"15,000",bb:"30,000",ante:"4,000"},    
+     level16:{sb:"30,000",bb:"60,000",ante:"8,000"},
+     level17:{sb:"30,000",bb:"60,000",ante:"8,000"},
  
     }
  

@@ -12,6 +12,7 @@ const TimerClock = ({ seconds,nextBlinds }) => {
     const [style, setStyle] = useState({
     color:"rgba(255, 255, 255, 0.644)"
     })
+    const [error, setError] = useState(0)
 
     const handlePauseButton = () => {
 
@@ -60,18 +61,27 @@ const TimerClock = ({ seconds,nextBlinds }) => {
   
       // save intervalId to clear the interval when the
       // component re-renders
+    
       const intervalId = setInterval(() => {
         if (!pause){
-          setTimeLeftSec(timeLeftSec - 1);
+          setTimeLeftSec(timeLeftSec - 0.5);
           let current = Date.now()
           
           let temp = current-startOfTime
-          console.log(temp-timeDiffer)
+
+          let total = temp-timeDiffer
+          
+          let differ = total-500
+          
+          setError(differ)
+          
           setTimeDiffer(temp)
-       
+          console.log(total)
+
+          
         }
         
-        }, 1000);
+        }, 500-error );
       
         
  
@@ -81,16 +91,51 @@ const TimerClock = ({ seconds,nextBlinds }) => {
       // when we update it
     }, [timeLeftSec,pause]);
 
+
+    const keyPress = (event) =>{
+
+      console.log(`Key: ${event.key} with keycode ${event.key} has been pressed`);
+      if (event.key===" "){
+        
+        setStyle({color:"gold"})
+        return setPause(true)
+      }
+
+      if (event.key==="Enter"){
+        
+      setStyle({color:"rgba(255, 255, 255, 0.644)"})
+      return setPause(false)
+      }
+
+      if (event.key==="Backspace"){
+      
+        if (window.confirm("Sure you want to restart timer?")){
+          setTimeLeftSec(seconds)
+          setPause(true)
+        }
+       
+        
+      }
+
+    }
     
+    useEffect(()=>{ 
+      window.addEventListener("keydown", keyPress);
+      return () => window.removeEventListener("keydown", keyPress);     
+                         
   
+    },[])
+
+    
+
+  if(seconds%1>0){return (window.alert(seconds))}
 
     if (seconds>59){
         return (
             <div  className="time" onClick={handleStartButton} style={{borderBottom:"none", borderLeft:"none",borderRight:"none"}}>
-              <h1 style={style}>{Math.floor(timeLeftSec/60)} : {timeLeftSec-(60*(Math.floor(timeLeftSec/60)))}</h1>
-              <Button variant="outline-danger" onClick={handleRestartButton} >Restart</Button>
-              <Button  variant="outline-warning" onClick={handlePauseButton}>Pause</Button>
-              <Button variant="outline-success" onClick={handleStartButton}>Start</Button>
+              <h1 style={style}>{Math.floor(timeLeftSec/60)} : {Math.ceil(timeLeftSec-(60*(Math.floor(timeLeftSec/60))))}</h1>
+              
+            
            
             </div>
           );
@@ -100,10 +145,8 @@ const TimerClock = ({ seconds,nextBlinds }) => {
     return (
       <div  className="time" onClick={handleStartButton}>
         <h1 style={style}>{Math.floor(timeLeftSec/60)} : {timeLeftSec-(60*(Math.floor(timeLeftSec/60)))} </h1>
-        <Button variant="outline-danger" handleRestartButton>Restart</Button>
-        <Button  variant="outline-warning" onClick={handlePauseButton}>Pause</Button>
-        <Button variant="outline-success" onClick={handleStartButton}>Start</Button>
        
+  
         
       </div>
     );
