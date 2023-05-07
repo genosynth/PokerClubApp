@@ -76,7 +76,7 @@ const TimerClock = ({ seconds,nextBlinds }) => {
           setError(differ)
           
           setTimeDiffer(temp)
-          console.log(total)
+          //console.log(total)
 
           
         }

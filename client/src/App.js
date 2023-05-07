@@ -106,7 +106,8 @@ function App() {
     setBool(true);
    
     let temp = currentLevel;
-    //if (lvl>=(game.length-17)){return} // this part to change according to number of blind levels
+   
+    if (lvl>=((Object.keys(game).length)-18)){return} // this part to change according to number of blind levels
     if (lvl<10){temp = temp.split("")[temp.length - 1];}
     if (lvl>=10){temp =  temp.split("")[temp.length-2] + temp.split("")[temp.length-1]}
     
@@ -128,6 +129,27 @@ function App() {
 
 
   function prevBlinds() {
+    let temp = currentLevel;
+   
+    if (lvl===1){return} // this part to change according to number of blind levels
+    if (lvl<10){temp = temp.split("")[temp.length - 1];}
+    if (lvl>=10){temp =  temp.split("")[temp.length-2] + temp.split("")[temp.length-1]}
+    
+    temp = parseInt(temp);
+    temp++;
+
+    setProvisionLevel("level" + (temp - 1));
+    setCurrentLevel("level" + (temp - 2));
+    setLvl(lvl - 1);
+    
+    localStorage.setItem(
+      "pokerapplvl",
+      JSON.stringify({
+        lvl: lvl - 1,
+        currentLevel: `level${lvl - 1}`,
+        provisionLevel: `level${lvl }`,
+      })
+    );
 
   }
 
@@ -137,9 +159,17 @@ function App() {
       if ( window.confirm("Are you sure you want to proceed to the next level?")){
         return nextBlinds()
         
-      }
+      }      
       
-      return 
+    }
+
+    if (event.key==="ArrowLeft"){
+      //event.preventDefault()
+      if ( window.confirm("Are you sure you want to proceed to the previous level?")){
+        return prevBlinds()
+        
+      }      
+      
     }
 
   }
