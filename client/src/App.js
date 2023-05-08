@@ -242,7 +242,7 @@ function App() {
           ></TimerClock>
             <Button
             size="lg"
-            variant="outline-primary"
+            variant="outline-light"
             onClick={() => {
               if (
                 window.confirm(
@@ -306,6 +306,7 @@ function App() {
             </div>
          
         </div>
+       
       </div>
     );
   }
