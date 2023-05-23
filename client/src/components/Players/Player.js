@@ -4,12 +4,13 @@ import Button from 'react-bootstrap/Button';
 
 function Player({player,knockOut}) {
     
+
  
   return (
 
 
     <div>
-          <h6 onClick={knockOut} value={player} >{player}</h6>
+          <h6 className='players' onClick={knockOut} value={player} >{player}</h6>
           
     </div>
   

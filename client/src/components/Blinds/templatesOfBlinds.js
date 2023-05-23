@@ -1,5 +1,5 @@
 
-function  template1 (){ // Leagye Heats
+function  template1 (){ // League Heats
    return {
     time:15,
     level1:{sb:25,bb:50,ante:null},

@@ -1,6 +1,11 @@
 
 
-h6:hover {
+.players:hover {
     color: red;
     cursor: pointer;
+}
+
+.players {
+    color: rgba(205, 217, 255, 0.795);
+   
 }

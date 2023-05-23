@@ -63,7 +63,7 @@ function App() {
 
     if (playersLeft<=prizes+1){
       updateMessage("MONEY €")
-      updateMsgStyle({color:"rgba(0, 128, 0, 0.705)"})
+      updateMsgStyle({color:"lightgreen"})
     }
   }
 
@@ -203,19 +203,25 @@ function App() {
     }
   }, [bool]);
 
+  const playerstyle = {
+    color:"rgba(205, 217, 255, 0.795)",  
+    textShadow: "1px 1px 2px rgb(255, 255, 255), 0 0 25px blue, 0 0 5px darkblue"
+   
+   
+  }
 
 
   if (game !=null && numOfPlayers-knockedOutPlayers.length!==0 ) {
     return (
       <div className="template">
         <div className="left-hand-side" style={style}>
-          <h6 style={{color:"white"}}>PLAYERS {numOfPlayers-knockedOutPlayers.length}/{numOfPlayers}</h6>
+          <h6 style={playerstyle}>PLAYERS {numOfPlayers-knockedOutPlayers.length}/{numOfPlayers}</h6>
           <Players
             game={game}
             addToKnockedOut={addToKnockedOut}
             setNumOfPlayers={setNumOfPlayers}
           ></Players>
-          <h6 style={{ color: "green" }}>
+          <h6 style={{ color: "lightgreen" }}>
             {" "}
             Avg Stack -{" "}
             {Math.floor(
@@ -233,7 +239,7 @@ function App() {
         <div className="timerDiv" style={style}>
           <h3>{game.tournamentName}</h3>
           <h6>Level {lvl}</h6>
-          <h2 sty>{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
+          <h2 >{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
           
           <h3>Ante - {game[currentLevel].ante}</h3>
           <TimerClock
@@ -286,7 +292,7 @@ function App() {
        
         </div>
 
-        <div style={style}>
+        <div className="righthandside" style={style}> 
           <h4 style={{borderBottom:"solid 1px"}}>Next Level</h4>
           <h5 >SB - {game[provisionLevel].sb} </h5>
           <h5>BB - {game[provisionLevel].bb}</h5>
@@ -316,7 +322,7 @@ function App() {
       <h1 className="results-header">RESULTS</h1>
         <div className="centreDiv">
           <div style={{padding:"2%"}}>
-            <h3>Placings</h3>
+            <h3 className="results-header">Placings</h3>
             <WinStats knockedOutPlayers={knockedOutPlayers} game={game}></WinStats>
             <Button
             variant="primary"
