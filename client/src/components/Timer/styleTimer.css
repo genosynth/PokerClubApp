@@ -12,5 +12,29 @@
 
 .time button {
     font-size: clamp(16px, 8vw, 35px);
+    
+
+}
+
+.span-button {
+    padding: 4%;
+    border: solid 2px;
+    width:100%
+
+}
+
+.span-button:hover {
+    background-color: rgba(240, 248, 255, 0.466);
+}
+
+.timerDivHook {
+    display: flex;
+    justify-content: space-around;
+    
+
+}
+
+.digits {
+    font-size: 100px
 
 }

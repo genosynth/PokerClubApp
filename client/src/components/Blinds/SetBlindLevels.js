@@ -212,8 +212,8 @@ function handleTimeofBlinds(){
 
  const handlePercentages= (event) => {
  
-   let payout = event.target.value 
- setPercentages(payout)
+  let payout = event.target.value 
+  setPercentages(payout)
  }
 
  const handleTotal = (event) => {
@@ -280,161 +280,166 @@ function handleTimeofBlinds(){
       }      
 
       }>
-      <div className='seats'>
+      <div className='top-part'>
+        <div className='seats'>
+        
+        
+          <div>
+          <label>Random Seating -&nbsp; </label>
+          <input type="radio" name="randomSeating" value={true}  onChange={handleRandomSeatChoice}/>Yes
+          <input type="radio" name="randomSeating" value={false} defaultChecked onChange={handleRandomSeatChoice}/>No
+          </div>
+        
+
+          <label>Player 1&nbsp;
+            <input type="text" onChange={handlePlayer1} required></input>
+          </label>
+        
+          <label>Player 2&nbsp;&nbsp;
+            <input type="text" onChange={handlePlayer2} required></input>
+          </label>
+          
+          <label>Player 3&nbsp;&nbsp;
+            <input type="text" onChange={handlePlayer3}></input>
+          </label>
+          
+          <label>Player 4&nbsp;&nbsp;
+            <input type="text" onChange={handlePlayer4}></input>
+          </label>
+          
+          <label>Player 5&nbsp;&nbsp;
+              <input type="text" onChange={handlePlayer5}></input>
+          </label>
+          
+          <label>Player 6&nbsp;&nbsp;
+            <input type="text" onChange={handlePlayer6}></input>
+          </label>
+        
+          <label>Player 7&nbsp;&nbsp;
+              <input type="text" onChange={handlePlayer7}></input>
+          </label>
+        
+          <label>Player 8&nbsp;&nbsp;
+            <input type="text" onChange={handlePlayer8}></input>
+          </label>
+          
+          <label>Player 9&nbsp;&nbsp;
+            <input type="text" onChange={handlePlayer9}></input>
+          </label>
+        
+          <label>Player 10
+            <input type="text" onChange={handlePlayer10}></input>
+          </label>
+        </div>  
+        
+        <div className='seats'>
+          <label>Tournament Name</label>
+          <input type="text" onChange={handleTournamentName}></input>
+
+          <label>Blind Levels (minutes)</label>
+        <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
+
+        <label>Starting Stacks (In thousands eg. 30)</label>
+        <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
+          
+        <label>Prize Pool €</label>
+        <input type="number" min ="10" onChange={handleTotal} required></input>
+        <label>Prize Winnings</label>
+        <select value={percentages} name="prizepool" onChange={handlePercentages}>
+            <option  value="100" >1 Player Paid - 100%</option>
+            <option value="70,30">2 Players Paid - 70% 30%</option>
+            <option value="60,40">2 Players Paid - 60% 40%</option>    
+            <option value="50,30,20">3 Players Paid - 50% 30% 20% </option>    
+            <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>   
+            <option value="40,30,20,10">4 Players Paid - 40% 30% 20% 10% </option>          
+          
+        </select>
+
+        <label>Blind Templates</label>
+        
+        <select value={ui} name="blind-templates" onChange={handleTemplates}>
+            {/*<option value="0"> None </option> */}
+            <option  value="1"> League Heats </option>
+            <option value="2"> Heat Blinds 8 Seater</option>
+            <option value="0"> Custom Blinds</option>
+              
+          
+        </select>
+        <span><i>Change only after having entered blinds duration</i></span>
+
+        <Button type='submit' variant="outline-light">Create</Button>
       
-       
-        <div>
-        <label>Random Seating -&nbsp; </label>
-        <input type="radio" name="randomSeating" value={true}  onChange={handleRandomSeatChoice}/>Yes
-        <input type="radio" name="randomSeating" value={false} defaultChecked onChange={handleRandomSeatChoice}/>No
+          </div>
         </div>
-       
-
-        <label>Player 1&nbsp;
-           <input type="text" onChange={handlePlayer1}></input>
-        </label>
-       
-        <label>Player 2&nbsp;&nbsp;
-          <input type="text" onChange={handlePlayer2}></input>
-        </label>
-        
-        <label>Player 3&nbsp;&nbsp;
-          <input type="text" onChange={handlePlayer3}></input>
-        </label>
-        
-        <label>Player 4&nbsp;&nbsp;
-          <input type="text" onChange={handlePlayer4}></input>
-        </label>
-        
-        <label>Player 5&nbsp;&nbsp;
-            <input type="text" onChange={handlePlayer5}></input>
-        </label>
-        
-        <label>Player 6&nbsp;&nbsp;
-          <input type="text" onChange={handlePlayer6}></input>
-        </label>
-       
-        <label>Player 7&nbsp;&nbsp;
-            <input type="text" onChange={handlePlayer7}></input>
-        </label>
-       
-        <label>Player 8&nbsp;&nbsp;
-          <input type="text" onChange={handlePlayer8}></input>
-        </label>
-        
-        <label>Player 9&nbsp;&nbsp;
-           <input type="text" onChange={handlePlayer9}></input>
-        </label>
-       
-        <label>Player 10
-          <input type="text" onChange={handlePlayer10}></input>
-        </label>
-        
-        <label>Tournament Name</label>
-        <input type="text" onChange={handleTournamentName}></input>
-
-        <label>Blind Levels (minutes)</label>
-       <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
-
-      <label>Starting Stacks (In thousands eg. 30)</label>
-      <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
-        
-       <label>Prize Pool €</label>
-       <input type="number" min ="10" onChange={handleTotal} required></input>
-      <label>Prize Winnings</label>
-      <select value={percentages} name="prizepool" onChange={handlePercentages}>
-          <option  value="100" >1 Player Paid - 100%</option>
-          <option value="70,30">2 Players Paid - 70% 30%</option>
-          <option value="60,40">2 Players Paid - 60% 40%</option>    
-          <option value="50,30,20">3 Players Paid - 50% 30% 20% </option>    
-          <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>   
-          <option value="40,30,20,10">4 Players Paid - 40% 30% 20% 10% </option>          
-        
-       </select>
-
-       <label>Blind Templates</label>
-       
-      <select value={ui} name="blind-templates" onChange={handleTemplates}>
-          <option value="0"> None </option>
-          <option  value="1"> League Heats </option>
-          <option value="2"> Heat Blinds 8 Seater</option>
-             
-        
-       </select>
-       <span><i>Change only after having entered blinds duration</i></span>
-
-       <Button type='submit' variant="outline-dark">Create</Button>
-     
-      </div>
       
-      <div className='blinds' style={tempStyle}>        
+        <div className='blinds' style={tempStyle}>        
+        
+
+        <label>Level 1 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb1} onChange={()=>{handleUpdateBlinds("level1",sb1.current.value,bb1.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb1} onChange={()=>{handleUpdateBlinds("level1",sb1.current.value,bb1.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante1} onChange={()=>{handleUpdateBlinds("level1",sb1.current.value,bb1.current.value, ante1.current.value)}}></input>
+        </label>
+
+        <label>Level 2 &nbsp;
+        <input type="number" placeholder='Small Blind' ref={sb2} onChange={()=>{handleUpdateBlinds("level2",sb2.current.value,bb2.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb2} onChange={()=>{handleUpdateBlinds("level2",sb2.current.value,bb2.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante2} onChange={()=>{handleUpdateBlinds("level2",sb2.current.value,bb2.current.value, ante2.current.value)}}></input>
+        </label>
+
+        <label>Level 3 &nbsp;  
+        <input type="number" placeholder='Small Blind' ref={sb3} onChange={()=>{handleUpdateBlinds("level3",sb3.current.value,bb3.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb3} onChange={()=>{handleUpdateBlinds("level3",sb3.current.value,bb3.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante3} onChange={()=>{handleUpdateBlinds("level3",sb3.current.value,bb3.current.value, ante3.current.value)}}></input>
+        </label>
+
+        <label>Level 4 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb4} onChange={()=>{handleUpdateBlinds("level4",sb4.current.value,bb4.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb4} onChange={()=>{handleUpdateBlinds("level4",sb4.current.value,bb4.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante4} onChange={()=>{handleUpdateBlinds("level4",sb4.current.value,bb4.current.value, ante4.current.value)}}></input>
+        
+        </label>
+
+        <label>Level 5 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb5} onChange={()=>{handleUpdateBlinds("level5",sb5.current.value,bb5.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb5} onChange={()=>{handleUpdateBlinds("level5",sb5.current.value,bb5.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante5} onChange={()=>{handleUpdateBlinds("level5",sb5.current.value,bb5.current.value, ante5.current.value)}}></input>
+        </label>
+
+        <label>Level 6 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb6} onChange={()=>{handleUpdateBlinds("level6",sb6.current.value,bb6.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb6} onChange={()=>{handleUpdateBlinds("level6",sb6.current.value,bb6.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante6} onChange={()=>{handleUpdateBlinds("level6",sb6.current.value,bb6.current.value, ante6.current.value)}}></input>
+        </label>
+
+        <label>Level 7 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb7} onChange={()=>{handleUpdateBlinds("level7",sb7.current.value,bb7.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb7} onChange={()=>{handleUpdateBlinds("level7",sb7.current.value,bb7.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante7} onChange={()=>{handleUpdateBlinds("level7",sb7.current.value,bb7.current.value, ante7.current.value)}}></input>
+        </label>
+
+        <label>Level 8 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb8} onChange={()=>{handleUpdateBlinds("level8",sb8.current.value,bb8.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb8} onChange={()=>{handleUpdateBlinds("level8",sb8.current.value,bb8.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante8} onChange={()=>{handleUpdateBlinds("level8",sb8.current.value,bb8.current.value, ante8.current.value)}}></input>
+        </label>
+
+        <label>Level 9 &nbsp; 
+        <input type="number" placeholder='Small Blind' ref={sb9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value, ante9.current.value)}}></input>
+        </label>
+
+        <label>Level 10
+        <input type="number" placeholder='Small Blind' ref={sb10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value)}}></input>
+        <input type="number" placeholder='Big Blind' ref={bb10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value)}}></input>
+        <input type="number" placeholder='Ante' ref={ante10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value, ante10.current.value)}}></input>
+        </label>
       
-
-      <label>Level 1 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb1} onChange={()=>{handleUpdateBlinds("level1",sb1.current.value,bb1.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb1} onChange={()=>{handleUpdateBlinds("level1",sb1.current.value,bb1.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante1} onChange={()=>{handleUpdateBlinds("level1",sb1.current.value,bb1.current.value, ante1.current.value)}}></input>
-      </label>
-
-      <label>Level 2 &nbsp;
-      <input type="number" placeholder='Small Blind' ref={sb2} onChange={()=>{handleUpdateBlinds("level2",sb2.current.value,bb2.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb2} onChange={()=>{handleUpdateBlinds("level2",sb2.current.value,bb2.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante2} onChange={()=>{handleUpdateBlinds("level2",sb2.current.value,bb2.current.value, ante2.current.value)}}></input>
-      </label>
-
-      <label>Level 3 &nbsp;  
-      <input type="number" placeholder='Small Blind' ref={sb3} onChange={()=>{handleUpdateBlinds("level3",sb3.current.value,bb3.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb3} onChange={()=>{handleUpdateBlinds("level3",sb3.current.value,bb3.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante3} onChange={()=>{handleUpdateBlinds("level3",sb3.current.value,bb3.current.value, ante3.current.value)}}></input>
-      </label>
-
-      <label>Level 4 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb4} onChange={()=>{handleUpdateBlinds("level4",sb4.current.value,bb4.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb4} onChange={()=>{handleUpdateBlinds("level4",sb4.current.value,bb4.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante4} onChange={()=>{handleUpdateBlinds("level4",sb4.current.value,bb4.current.value, ante4.current.value)}}></input>
-      
-      </label>
-
-      <label>Level 5 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb5} onChange={()=>{handleUpdateBlinds("level5",sb5.current.value,bb5.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb5} onChange={()=>{handleUpdateBlinds("level5",sb5.current.value,bb5.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante5} onChange={()=>{handleUpdateBlinds("level5",sb5.current.value,bb5.current.value, ante5.current.value)}}></input>
-      </label>
-
-      <label>Level 6 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb6} onChange={()=>{handleUpdateBlinds("level6",sb6.current.value,bb6.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb6} onChange={()=>{handleUpdateBlinds("level6",sb6.current.value,bb6.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante6} onChange={()=>{handleUpdateBlinds("level6",sb6.current.value,bb6.current.value, ante6.current.value)}}></input>
-      </label>
-
-      <label>Level 7 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb7} onChange={()=>{handleUpdateBlinds("level7",sb7.current.value,bb7.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb7} onChange={()=>{handleUpdateBlinds("level7",sb7.current.value,bb7.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante7} onChange={()=>{handleUpdateBlinds("level7",sb7.current.value,bb7.current.value, ante7.current.value)}}></input>
-      </label>
-
-      <label>Level 8 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb8} onChange={()=>{handleUpdateBlinds("level8",sb8.current.value,bb8.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb8} onChange={()=>{handleUpdateBlinds("level8",sb8.current.value,bb8.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante8} onChange={()=>{handleUpdateBlinds("level8",sb8.current.value,bb8.current.value, ante8.current.value)}}></input>
-      </label>
-
-      <label>Level 9 &nbsp; 
-      <input type="number" placeholder='Small Blind' ref={sb9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante9} onChange={()=>{handleUpdateBlinds("level9",sb9.current.value,bb9.current.value, ante9.current.value)}}></input>
-      </label>
-
-      <label>Level 10
-      <input type="number" placeholder='Small Blind' ref={sb10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value)}}></input>
-      <input type="number" placeholder='Big Blind' ref={bb10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value)}}></input>
-      <input type="number" placeholder='Ante' ref={ante10} onChange={()=>{handleUpdateBlinds("level10",sb10.current.value,bb10.current.value, ante10.current.value)}}></input>
-      </label>
+        
     
-      
-   
 
-      </div>
+        </div>
 
       <div className='blinds'  style={tempStyle}>
 
@@ -498,7 +503,7 @@ function handleTimeofBlinds(){
       <input type="number" placeholder='Ante' ref={ante20} onChange={()=>{handleUpdateBlinds("level20",sb20.current.value,bb20.current.value, ante20.current.value)}}></input>
       </label>
     
-        </div>
+      </div>
 
        
 

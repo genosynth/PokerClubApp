@@ -164,24 +164,12 @@ const TimerClock = ({ seconds,nextBlinds }) => {
 
  
 
-  //console.log(timeLeftSec)
+  console.log(timeLeftSec)
     
-  if (timeLeftSec%60===0){
+  if (Math.ceil(timeLeftSec)%60===0){
     return (
       <div  className="time" onClick={handleStartButton} style={{borderBottom:"none", borderLeft:"none",borderRight:"none"}}>
         <h1 style={style}>{Math.floor(timeLeftSec/60)} : 00</h1>
-        
-      
-     
-      </div>
-    );
-
-  }
-
-  if (timeLeftSec%60===59.5){
-    return (
-      <div  className="time" onClick={handleStartButton} style={{borderBottom:"none", borderLeft:"none",borderRight:"none"}}>
-        <h1 style={style}>{Math.floor(timeLeftSec/60)+1} : 00</h1>
         
       
      

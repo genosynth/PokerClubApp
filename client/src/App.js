@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import Winnings from "./components/winnings/Winnings"
 import WinStats from "./components/Stats/WinStats"
 import OtherStats from "./components/Stats/OtherStats"
+import TimerHook from "./components/Timer/TimerHook"
 
 function App() {
   const [game, setGame] = useState(() => {
@@ -155,6 +156,8 @@ function App() {
 
   const keyPress = (event) => {
     if (event.key==="ArrowRight"){
+      if(game==null ) return
+      if (numOfPlayers-knockedOutPlayers.length==0) return
       //event.preventDefault()
       if ( window.confirm("Are you sure you want to proceed to the next level?")){
         return nextBlinds()
@@ -165,6 +168,9 @@ function App() {
 
     if (event.key==="ArrowLeft"){
       //event.preventDefault()
+      if(game==null) return
+      if (numOfPlayers-knockedOutPlayers.length==0) return
+      
       if ( window.confirm("Are you sure you want to proceed to the previous level?")){
         return prevBlinds()
         
@@ -242,10 +248,16 @@ function App() {
           <h2 >{game[currentLevel].sb}/{game[currentLevel].bb}</h2>
           
           <h3>Ante - {game[currentLevel].ante}</h3>
-          <TimerClock
+          {/*<TimerClock
             seconds={game.time * 60}
             nextBlinds={nextBlinds}
-          ></TimerClock>
+            ></TimerClock>*/}
+          
+          <TimerHook 
+            secondsGame={game.time * 60}
+            nextBlinds={nextBlinds}
+          ></TimerHook>
+      
             <Button
             size="lg"
             variant="outline-light"
