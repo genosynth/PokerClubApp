@@ -80,7 +80,7 @@ function App() {
     let hrs = date.getHours()
     let mins = date.getMinutes()
     let timeOfGame = `${hrs}:${mins}`
-    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame, tournamentName , choice};
+    let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame, tournamentName , choice, date};
     
     localStorage.setItem("pokerapp", JSON.stringify(temp));
     setGame(temp);
@@ -108,7 +108,7 @@ function App() {
    
     let temp = currentLevel;
    
-    if (lvl>=((Object.keys(game).length)-18)){return} // this part to change according to number of blind levels
+    if (lvl>=((Object.keys(game).length)-19)){return} // this part to change according to number of blind levels
     if (lvl<10){temp = temp.split("")[temp.length - 1];}
     if (lvl>=10){temp =  temp.split("")[temp.length-2] + temp.split("")[temp.length-1]}
     
@@ -341,9 +341,38 @@ function App() {
             onClick={() => {
               if (
                 window.confirm(
-                  "Are you sure you want to clear the game and start over?"
+                  "Are you sure you want to save the results, clear the game and start over?"
                 )
               ) {
+
+                let winnerName = knockedOutPlayers[0]
+                let temp = winnerName.lastIndexOf('-')
+                winnerName= winnerName.slice(temp+2)
+                const record = {
+                  title:game.tournamentName,
+                  players:knockedOutPlayers.length,
+                  winner:winnerName,
+                  buyIn:game.total/knockedOutPlayers.length,
+                  date:game.date,
+                  percentages:game.percentages.split(',')
+                }
+
+                if(localStorage.getItem("poker-history")){
+                  const previousStuff = JSON.parse(localStorage.getItem('poker-history'))
+                  previousStuff.push(record)
+                  localStorage.setItem("poker-history", JSON.stringify(previousStuff))
+
+                }
+
+                
+                if(!localStorage.getItem("poker-history")){
+                
+                  const array = [record]                 
+                  localStorage.setItem("poker-history", JSON.stringify(array))
+                
+                } 
+                
+             
                 setGame(null);
                 setKnockedOutPlayers([]);
                 setLvl(1);
@@ -358,7 +387,7 @@ function App() {
               }
             }}
           >
-            Clear Game
+            Save & Clear Game
         </Button>
        
           </div>

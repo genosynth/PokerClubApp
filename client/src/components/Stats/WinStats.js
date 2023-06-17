@@ -6,8 +6,9 @@ let total = game.total
 let percentages = game.percentages.split(",")
 //console.log(total)
 //console.log(percentages)
- 
+console.log(knockedOutPlayers[0])
   return (
+    
    knockedOutPlayers.map((el)=>{
 
     let temp = (percentages[knockedOutPlayers.indexOf(el)]/100)*total

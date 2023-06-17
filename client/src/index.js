@@ -27,7 +27,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>    
-
+    <div >
+      <a href='/PokerClubApp/history'>History</a>
+      <a href='/PokerClubApp/'>Game</a>
+      </div>
     <RouterProvider router={router} />
   </React.StrictMode>
 );

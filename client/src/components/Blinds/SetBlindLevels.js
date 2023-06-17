@@ -291,7 +291,7 @@ function handleTimeofBlinds(){
           </div>
         
 
-          <label>Player 1&nbsp;
+          <label>Player 1&nbsp;&nbsp;
             <input type="text" onChange={handlePlayer1} required></input>
           </label>
         
