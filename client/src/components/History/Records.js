@@ -39,18 +39,33 @@ function Records() {
 
 
  
-
+        //el.allPlayers[2].slice((el.allPlayers[2].lastIndexOf('-'))+2)
    
     return (       
         historyRecords.map(el =>{
+            let second = el.allPlayers[1].slice((el.allPlayers[1].lastIndexOf('-'))+1) || "None"
+            let third = "-"
+          
+            if (el.allPlayers[2]){
+                     third = el.allPlayers[2].slice((el.allPlayers[2].lastIndexOf('-'))+2) || "None"
+            }
+
+            let secondPrize = el.prizepool*(el.percentages[1]/100) || "0"
+            let thirdPrize = el.prizepool*(el.percentages[2]/100) || "0"
+           
+            
          return (
             <tr>
                 <td className='value-records'>{el.title}</td>
                 <td className='value-records'>{el.players}</td>
-                <td className='value-records'>{el.winner}</td>
+                <td className='value-records'>{el.winner}</td>                
+                <td className='winner-records'>{el.prizepool*(el.percentages[0]/100)}€</td>
+                <td className='value-records'>{second}</td>                
+                <td className='winner-records'>{secondPrize}€</td>
+                <td className='value-records'>{third}</td>                
+                <td className='winner-records'>{thirdPrize}€</td>
                 <td className='value-records'>{el.buyIn}€</td>
-                <td className='winner-records'>{el.buyIn*el.players*(el.percentages[0]/100)}€</td>
-                <td className='value-records'>{el.date}</td>
+                <td className='value-records'>{el.date.split("T")[0]}</td>
             </tr>
          )
         })

@@ -80,6 +80,7 @@ function App() {
     let hrs = date.getHours()
     let mins = date.getMinutes()
     let timeOfGame = `${hrs}:${mins}`
+    
     let temp = { ...players, ...blinds, stacks, percentages, total, timeOfGame, tournamentName , choice, date};
     
     localStorage.setItem("pokerapp", JSON.stringify(temp));
@@ -216,6 +217,12 @@ function App() {
    
   }
 
+  const [rebuys,setRebuys] = useState(0)
+  const [numOfTotalPlayers] = useState(()=>{
+    if (!localStorage.getItem("pokerapplyrs")) return []
+    return JSON.parse(localStorage.getItem("pokerapplyrs")).length
+  })
+  
 
   if (game !=null && numOfPlayers-knockedOutPlayers.length!==0 ) {
     return (
@@ -311,11 +318,12 @@ function App() {
           <h5 style={{color:"white"}}>Ante - {game[provisionLevel].ante}</h5>
 
           <div>
-            <h4>Prize Pool - {game.total}€</h4>
+            <h4>Prize Pool - {(parseInt(game.total) + (rebuys*(game.total/numOfTotalPlayers)))}€  <span className="rebuy" onClick={()=>{setRebuys(rebuys+1)}}>Add Rebuy</span> </h4>
+           <h4>{rebuys} Rebuys</h4>
           </div>
           <div>
             <h4>Payout Structure</h4>
-            <Winnings></Winnings>
+            <Winnings rebuys={rebuys} numOfTotalPlayers={numOfTotalPlayers} total={game.total}></Winnings>
           </div>
 
             <div className="status" style={{border:"none"}}>
@@ -335,7 +343,7 @@ function App() {
         <div className="centreDiv">
           <div style={{padding:"2%"}}>
             <h3 className="results-header">Placings</h3>
-            <WinStats knockedOutPlayers={knockedOutPlayers} game={game}></WinStats>
+            <WinStats knockedOutPlayers={knockedOutPlayers} game={game} rebuys={rebuys}></WinStats>
             <Button
             variant="primary"
             onClick={() => {
@@ -347,12 +355,14 @@ function App() {
 
                 let winnerName = knockedOutPlayers[0]
                 let temp = winnerName.lastIndexOf('-')
-                winnerName= winnerName.slice(temp+2)
+                winnerName= winnerName.slice(temp+2)  
                 const record = {
+                  allPlayers:knockedOutPlayers,
                   title:game.tournamentName,
                   players:knockedOutPlayers.length,
                   winner:winnerName,
                   buyIn:game.total/knockedOutPlayers.length,
+                  prizepool:parseInt(game.total)+ (rebuys*(parseInt(game.total)/knockedOutPlayers.length)),
                   date:game.date,
                   percentages:game.percentages.split(',')
                 }
@@ -372,7 +382,8 @@ function App() {
                 
                 } 
                 
-             
+                
+                setRebuys(0)
                 setGame(null);
                 setKnockedOutPlayers([]);
                 setLvl(1);
