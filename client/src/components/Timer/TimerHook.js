@@ -30,6 +30,7 @@ function MyTimer({ autoStart, expiryTimestamp, secondsGame, nextBlinds }) {
      
       <div className='timerDivHook'>
       <span className="span-button" onClick={()=>{
+       
         if (minutes==0 && seconds ==0) { return }
         resume()}}>Start/Resume</span>
         <span className="span-button" onClick={()=>{

@@ -32,7 +32,7 @@ function App() {
     if (localStorage.getItem("pokerapplyrs")) {
       return JSON.parse(localStorage.getItem("pokerapplyrs")).length;
     } else {
-      return 4;
+      return 1;
     }
   }); //this is used to get the total players in the Player Component and then display the placing of the players accordingly.
   const [lvl, setLvl] = useState(() => {
@@ -43,10 +43,7 @@ function App() {
 
   const [message, updateMessage] = useState("UNQUALIFIED")
   const [msgStyle, updateMsgStyle] = useState({color:"rgba(255, 0, 0, 0.651)"})
-
-  const [toggle, setToggle] = useState("Hide")
-
-  
+ 
 
 
 
@@ -85,8 +82,12 @@ function App() {
     
     localStorage.setItem("pokerapp", JSON.stringify(temp));
     setGame(temp);
+
+    return window.location.reload()
     
   }
+
+
 
   const [currentLevel, setCurrentLevel] = useState(() => {
     if (localStorage.getItem("pokerapplvl")) {
@@ -217,12 +218,20 @@ function App() {
    
   }
 
+   
+
+
   const [rebuys,setRebuys] = useState(0)
-  const [numOfTotalPlayers] = useState(()=>{
+
+  const addRebuys = () => {
+    setRebuys(rebuys+1)
+  }
+
+  const [numOfTotalPlayers, setTotalPlayers] = useState(()=>{
     if (!localStorage.getItem("pokerapplyrs")) return []
     return JSON.parse(localStorage.getItem("pokerapplyrs")).length
   })
-  
+
 
   if (game !=null && numOfPlayers-knockedOutPlayers.length!==0 ) {
     return (
@@ -262,7 +271,7 @@ function App() {
           
           <TimerHook 
             secondsGame={game.time * 60}
-            nextBlinds={nextBlinds}
+            nextBlinds={nextBlinds}           
           ></TimerHook>
       
             <Button
@@ -318,7 +327,7 @@ function App() {
           <h5 style={{color:"white"}}>Ante - {game[provisionLevel].ante}</h5>
 
           <div>
-            <h4>Prize Pool - {(parseInt(game.total) + (rebuys*(game.total/numOfTotalPlayers)))}€  <span className="rebuy" onClick={()=>{setRebuys(rebuys+1)}}>Add Rebuy</span> </h4>
+            <h4>Prize Pool - {((parseInt(game.total) + (rebuys*(game.total/numOfTotalPlayers))))}€  <span className="rebuy" onClick={addRebuys}>Add Rebuy</span> </h4>
            <h4>{rebuys} Rebuys</h4>
           </div>
           <div>
@@ -384,6 +393,8 @@ function App() {
                 
                 
                 setRebuys(0)
+                setNumOfPlayers(0)
+                setTotalPlayers(0)
                 setGame(null);
                 setKnockedOutPlayers([]);
                 setLvl(1);
@@ -402,7 +413,7 @@ function App() {
         </Button>
        
           </div>
-          <OtherStats game={game} lvl={lvl}></OtherStats>
+          <OtherStats game={game} lvl={lvl} rebuys={rebuys} numOfTotalPlayers={numOfTotalPlayers}></OtherStats>
           
         </div>
       

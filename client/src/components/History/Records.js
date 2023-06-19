@@ -59,11 +59,11 @@ function Records() {
                 <td className='value-records'>{el.title}</td>
                 <td className='value-records'>{el.players}</td>
                 <td className='value-records'>{el.winner}</td>                
-                <td className='winner-records'>{el.prizepool*(el.percentages[0]/100)}€</td>
+                <td className='winner-records'>{Math.ceil(el.prizepool*(el.percentages[0]/100))}€</td>
                 <td className='value-records'>{second}</td>                
-                <td className='winner-records'>{secondPrize}€</td>
+                <td className='winner-records'>{Math.ceil(secondPrize)}€</td>
                 <td className='value-records'>{third}</td>                
-                <td className='winner-records'>{thirdPrize}€</td>
+                <td className='winner-records'>{Math.ceil(thirdPrize)}€</td>
                 <td className='value-records'>{el.buyIn}€</td>
                 <td className='value-records'>{el.date.split("T")[0]}</td>
             </tr>
