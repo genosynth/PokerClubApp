@@ -247,7 +247,7 @@ function App() {
             {" "}
             Avg Stack -{" "}
             {Math.floor(
-              (game.stacks * numOfPlayers) /
+              (game.stacks * (numOfPlayers+rebuys)) /
                 (numOfPlayers - knockedOutPlayers.length)
             )}
             K
