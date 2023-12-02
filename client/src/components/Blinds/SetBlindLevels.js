@@ -43,7 +43,13 @@ function BlindLevels({createGame}) {
     level17:{sb:null,bb:null,ante:null},
     level18:{sb:null,bb:null,ante:null},
     level19:{sb:null,bb:null,ante:null},
-    level20:{sb:null,bb:null,ante:null}
+    level20:{sb:null,bb:null,ante:null},
+    level21:{sb:null,bb:null,ante:null},
+    level22:{sb:null,bb:null,ante:null},
+    level23:{sb:null,bb:null,ante:null},
+    level24:{sb:null,bb:null,ante:null},
+    level25:{sb:null,bb:null,ante:null},
+    level26:{sb:null,bb:null,ante:null},
     
 
   })
@@ -91,6 +97,16 @@ function BlindLevels({createGame}) {
   const bb19 = useRef();
   const sb20 = useRef();
   const bb20 = useRef();
+  const sb21 = useRef();
+  const bb21 = useRef();
+  const sb22 = useRef();
+  const bb22 = useRef();
+  const sb23 = useRef();
+  const bb23 = useRef();
+  const sb24 = useRef();
+  const bb24 = useRef();
+  const sb25 = useRef();
+  const bb25 = useRef(); 
   const ante1 = useRef();
   const ante2 = useRef();
   const ante3 = useRef();
@@ -111,6 +127,11 @@ function BlindLevels({createGame}) {
   const ante18 = useRef();
   const ante19 = useRef();
   const ante20 = useRef();
+  const ante21 = useRef();
+  const ante22 = useRef();
+  const ante23 = useRef();
+  const ante24 = useRef();
+  const ante25 = useRef();
   const startingStacks = useRef()
   const prizepool = useRef()
 
@@ -501,6 +522,37 @@ function handleTimeofBlinds(){
       <input type="number" placeholder='Small Blind' ref={sb20} onChange={()=>{handleUpdateBlinds("level20",sb20.current.value,bb20.current.value)}}></input>
       <input type="number" placeholder='Big Blind' ref={bb20} onChange={()=>{handleUpdateBlinds("level20",sb20.current.value,bb20.current.value)}}></input>
       <input type="number" placeholder='Ante' ref={ante20} onChange={()=>{handleUpdateBlinds("level20",sb20.current.value,bb20.current.value, ante20.current.value)}}></input>
+      </label>
+
+      <label>Level 21 &nbsp; 
+      <input type="number" placeholder='Small Blind' ref={sb21} onChange={()=>{handleUpdateBlinds("level21",sb21.current.value,bb21.current.value)}}></input>
+      <input type="number" placeholder='Big Blind' ref={bb21} onChange={()=>{handleUpdateBlinds("level21",sb21.current.value,bb21.current.value)}}></input>
+      <input type="number" placeholder='Ante' ref={ante21} onChange={()=>{handleUpdateBlinds("level21",sb21.current.value,bb21.current.value, ante21.current.value)}}></input>
+      </label>
+
+
+      <label>Level 22 &nbsp; 
+      <input type="number" placeholder='Small Blind' ref={sb22} onChange={()=>{handleUpdateBlinds("level22",sb22.current.value,bb22.current.value)}}></input>
+      <input type="number" placeholder='Big Blind' ref={bb22} onChange={()=>{handleUpdateBlinds("level22",sb22.current.value,bb22.current.value)}}></input>
+      <input type="number" placeholder='Ante' ref={ante22} onChange={()=>{handleUpdateBlinds("level22",sb22.current.value,bb22.current.value, ante22.current.value)}}></input>
+      </label>
+
+      <label>Level 23 &nbsp; 
+      <input type="number" placeholder='Small Blind' ref={sb23} onChange={()=>{handleUpdateBlinds("level23",sb23.current.value,bb23.current.value)}}></input>
+      <input type="number" placeholder='Big Blind' ref={bb23} onChange={()=>{handleUpdateBlinds("level23",sb23.current.value,bb23.current.value)}}></input>
+      <input type="number" placeholder='Ante' ref={ante23} onChange={()=>{handleUpdateBlinds("level23",sb23.current.value,bb23.current.value, ante23.current.value)}}></input>
+      </label>
+
+      <label>Level 24 &nbsp; 
+      <input type="number" placeholder='Small Blind' ref={sb24} onChange={()=>{handleUpdateBlinds("level24",sb24.current.value,bb24.current.value)}}></input>
+      <input type="number" placeholder='Big Blind' ref={bb24} onChange={()=>{handleUpdateBlinds("level24",sb24.current.value,bb24.current.value)}}></input>
+      <input type="number" placeholder='Ante' ref={ante24} onChange={()=>{handleUpdateBlinds("level24",sb24.current.value,bb24.current.value, ante24.current.value)}}></input>
+      </label>
+
+      <label>Level 25 &nbsp; 
+      <input type="number" placeholder='Small Blind' ref={sb25} onChange={()=>{handleUpdateBlinds("level25",sb25.current.value,bb25.current.value)}}></input>
+      <input type="number" placeholder='Big Blind' ref={bb25} onChange={()=>{handleUpdateBlinds("level25",sb25.current.value,bb25.current.value)}}></input>
+      <input type="number" placeholder='Ante' ref={ante25} onChange={()=>{handleUpdateBlinds("level25",sb25.current.value,bb25.current.value, ante25.current.value)}}></input>
       </label>
     
       </div>
