@@ -24,9 +24,9 @@ function OtherStats({lvl,game,rebuys, numOfTotalPlayers}) {
     <div className='otherbox'>
         <h3>Other Stats</h3>
         <h4>Ended at level - {lvl}</h4>
-        <h4>Total Prize Pool - {parseInt(game.total) + (rebuys*parseInt(game.total)/numOfTotalPlayers)}€ </h4>
-        <h4>Players Cashed Out - {game.percentages.split(",").length}</h4>
         <h4>Total Rebuys - {rebuys} </h4>
+        <h4>Total Prize Pool - {parseInt(game.total) + (rebuys*parseInt(game.total)/numOfTotalPlayers)}€ </h4>
+        <h4>Players Cashed Out - {game.percentages.split(",").length}</h4>        
         <h4>Started at - {game.timeOfGame}</h4>
         <h4>Finished at - {dateEnded}</h4>
        {/*  <h4>Test - {dateEnded.split(":")[0]-game.timeOfGame.split(":")[0]} hrs {dateEnded.split(":")[1]-game.timeOfGame.split(":")[1]} mins</h4> */}
