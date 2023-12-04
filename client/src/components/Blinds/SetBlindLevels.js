@@ -3,6 +3,7 @@ import './styleBlinds.css'
 import Button from 'react-bootstrap/Button';
 import {template1} from './templatesOfBlinds'
 import {template2} from './templatesOfBlinds'
+import {template3} from './templatesOfBlinds'
 
 function BlindLevels({createGame}) {
 
@@ -271,6 +272,14 @@ function handleTimeofBlinds(){
     setUi("2")
     setTempStyle({visibility:"hidden"})
     }   
+
+    if (ans=="3"){
+      let temp = template3()
+      temp["time"] = blindTime.current.value
+      setTemplate(temp)
+      setUi("3")
+      setTempStyle({visibility:"hidden"})
+      }     
   
  }
 
@@ -370,7 +379,9 @@ function handleTimeofBlinds(){
             <option  value="100" >1 Player Paid - 100%</option>
             <option value="70,30">2 Players Paid - 70% 30%</option>
             <option value="60,40">2 Players Paid - 60% 40%</option>    
-            <option value="50,30,20">3 Players Paid - 50% 30% 20% </option>    
+            <option value="50,30,20">3 Players Paid - 50% 30% 20% </option> 
+            <option value="55,30,15">3 Players Paid - 55% 30% 15% </option>    
+            <option value="60,30,10">3 Players Paid - 60% 30% 10% </option> 
             <option value="50,25,15,10">4 Players Paid - 50% 25% 15% 10% </option>   
             <option value="40,30,20,10">4 Players Paid - 40% 30% 20% 10% </option>          
           
@@ -380,6 +391,7 @@ function handleTimeofBlinds(){
         
         <select value={ui} name="blind-templates" onChange={handleTemplates}>
             {/*<option value="0"> None </option> */}
+            <option value ="3">10 Seater Tournament with rebuys/addons</option>
             <option  value="1"> League Heats </option>
             <option value="2"> Heat Blinds 8 Seater</option>
             <option value="0"> Custom Blinds</option>
