@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import SetBlindLevels from "./components/Blinds/SetBlindLevels";
-import TimerClock from "./components/Timer/TimerClock";
+//import TimerClock from "./components/Timer/TimerClock"; // this was used before a react framework was properly used
 import alarm from "./components/Audio/alarmshort.mp3";
 import Players from "./components/Players/Players";
 import ListKnocked from "./components/Players/ListKnocked";
@@ -246,11 +246,21 @@ function App() {
           <h6 style={{ color: "lightgreen" }}>
             {" "}
             Avg Stack -{" "}
-            {Math.floor(
+            {(Math.floor(
               (game.stacks * (numOfPlayers+rebuys)) /
                 (numOfPlayers - knockedOutPlayers.length)
-            )}
-            K
+            )).toLocaleString('en-US')}
+            
+          </h6>
+          <h6 style={{ color: "green" }}>
+            {" "}
+            Total Chips -{" "}
+
+           
+            {(Math.floor(
+              (game.stacks * (numOfPlayers+rebuys))                
+            )).toLocaleString('en-US')}
+             
           </h6>
           <h6 style={{ color: "red" }}>Knocked Out</h6>
           <ListKnocked knockedOutPlayers={knockedOutPlayers}></ListKnocked>

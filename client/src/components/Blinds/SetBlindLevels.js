@@ -369,7 +369,7 @@ function handleTimeofBlinds(){
           <label>Blind Levels (minutes)</label>
         <input type="number" min='1' ref={blindTime} onChange={()=>{handleTimeofBlinds()}} required></input>
 
-        <label>Starting Stacks (In thousands eg. 30)</label>
+        <label>Starting Stacks </label>
         <input type="number" min="1" ref={startingStacks} onChange={handleStartingStacks}></input>
           
         <label>Prize Pool €</label>
